@@ -25,10 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.capgemini.capcars.R
-import com.capgemini.capcars.presentation.ui.navigation.NavigationItem
 import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart
@@ -44,7 +41,7 @@ import com.capgemini.commons.ui.theme.smallSpacing
 import com.capgemini.commons.ui.theme.tinySpacing
 
 @Composable
-fun OnboardingScreen(navController: NavController) {
+fun OnboardingScreen(onNavigate: () -> Unit) {
     val gradient = Brush.verticalGradient(
         colors = listOf(GradientStart, GradientEnd)
     )
@@ -63,7 +60,7 @@ fun OnboardingScreen(navController: NavController) {
         ) {
             OnboardingContent()
             Spacer(modifier = Modifier.weight(1f))
-            OnboardingFooter(navController)
+            OnboardingFooter(onNavigate)
         }
     }
 }
@@ -114,7 +111,7 @@ private fun OnboardingBodyText() {
 }
 
 @Composable
-private fun OnboardingFooter(navController: NavController) {
+private fun OnboardingFooter(onNavigate: () -> Unit) {
     // Car Image
     Image(
         painter = painterResource(id = R.drawable.onboarding_porsche),
@@ -134,27 +131,27 @@ private fun OnboardingFooter(navController: NavController) {
     Spacer(modifier = Modifier.height(largeSpacing))
 
     // Sign-In Section
-    OnboardingSignInSection(navController)
+    OnboardingSignInSection(onNavigate)
 }
 
 @Composable
-private fun OnboardingSignInSection(navController: NavController) {
+private fun OnboardingSignInSection(onNavigate: () -> Unit) {
     Column(horizontalAlignment = Alignment.Start) {
         Text(
             text = stringResource(R.string.subtitle_browse_car_collection),
             style = BodySmall
         )
         Spacer(modifier = Modifier.height(tinySpacing))
-        SignInRow(navController)
+        SignInRow(onNavigate)
     }
 }
 
 @Composable
-private fun SignInRow(navController: NavController) {
+private fun SignInRow(onNavigate: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.clickable {
-            navController.navigate(NavigationItem.CarList.route)
+            onNavigate()
         }
     ) {
         Text(
@@ -173,6 +170,6 @@ private fun SignInRow(navController: NavController) {
 
 @Preview(showBackground = true)
 @Composable
-fun OnboardingScreenPreview() {
-    OnboardingScreen(navController = rememberNavController())
+private fun OnboardingScreenPreview() {
+    OnboardingScreen(onNavigate = {})
 }

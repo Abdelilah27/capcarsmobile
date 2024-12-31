@@ -1,11 +1,15 @@
 package com.capgemini.capcars.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.capgemini.capcars.presentation.ui.carList.CarListScreen
+import com.capgemini.capcars.presentation.ui.carList.CarListViewModel
 import com.capgemini.capcars.presentation.ui.onboarding.OnboardingScreen
 
 // AppNavHost.kt
@@ -21,10 +25,14 @@ fun AppNavHost(
         startDestination = startDestination
     ) {
         composable(NavigationItem.Onboarding.route) {
-            OnboardingScreen(navController)
+            OnboardingScreen(
+                onNavigate = { navController.navigate(NavigationItem.CarList.route) }
+            )
         }
         composable(NavigationItem.CarList.route) {
-            CarListScreen(navController)
+            val viewModel: CarListViewModel = hiltViewModel()
+            val carListState by viewModel.state.collectAsState()
+            CarListScreen(carListState)
         }
     }
 }

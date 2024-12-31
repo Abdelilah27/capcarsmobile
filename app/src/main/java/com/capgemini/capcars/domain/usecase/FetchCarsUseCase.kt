@@ -2,6 +2,9 @@ package com.capgemini.capcars.domain.usecase
 
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.data.repository.CarRepository
+import com.capgemini.capcars.domain.core.di.IODispatcher
+import com.capgemini.capcars.domain.core.di.MainDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -13,13 +16,14 @@ import javax.inject.Inject
  */
 
 class FetchCarsUseCase @Inject constructor(
-    private val repository: CarRepository
+    private val repository: CarRepository,
+    @IODispatcher private val dispatcher: CoroutineDispatcher
 ) {
     operator fun invoke() = flow {
         emit(FetchCarState.Loading)
         val cars = repository.getCars()
         emit(FetchCarState.Success(cars))
-    }.flowOn(Dispatchers.IO).catch { _ ->
+    }.flowOn(dispatcher).catch { _ ->
         emit(FetchCarState.Error)
     }
 }

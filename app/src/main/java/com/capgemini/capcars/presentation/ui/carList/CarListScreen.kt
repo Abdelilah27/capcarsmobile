@@ -2,16 +2,13 @@ package com.capgemini.capcars.presentation.ui.carList
 
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun CarListScreen(navController: NavController, viewModel: CarListViewModel = hiltViewModel()) {
-    val carListState by viewModel.state.collectAsState()
+fun CarListScreen(carListState: CarListState) {
 
-    when (val state = carListState) {
+
+    when (carListState) {
 
         is CarListState.Error -> {
             Log.d("CarListScreen", "Error")
@@ -26,7 +23,13 @@ fun CarListScreen(navController: NavController, viewModel: CarListViewModel = hi
         }
 
         is CarListState.Success -> {
-            Log.d("CarListScreen", "Success: ${state.cars.joinToString(", ") { it.model }}")
+            Log.d("CarListScreen", "Success: ${carListState.cars.joinToString(", ") { it.model }}")
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun CarListScreenPreview() {
+    CarListScreen(CarListState.NoState)
 }

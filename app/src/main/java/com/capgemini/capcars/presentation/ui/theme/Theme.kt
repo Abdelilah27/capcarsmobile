@@ -25,7 +25,7 @@ fun CapcarsTheme(
     MaterialTheme(
         colorScheme = lightScheme,
         typography = Typography,
-        shapes = shapes,  // TODO SCAT
+        shapes = shapes,
         content = content
     )
 }
