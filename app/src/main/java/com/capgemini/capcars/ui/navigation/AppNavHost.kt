@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.capgemini.capcars.ui.carsList.CarListScreen
-import com.capgemini.capcars.ui.onBoarding.OnBoardingScreen
+import com.capgemini.capcars.ui.onBoarding.OnboardingScreen
 
 // AppNavHost.kt
 @Composable
@@ -21,7 +21,7 @@ fun AppNavHost(
         startDestination = startDestination
     ) {
         composable(NavigationItem.Onboarding.route) {
-            OnBoardingScreen(navController)
+            OnboardingScreen(navController)
         }
         composable(NavigationItem.CarList.route) {
             CarListScreen(navController)

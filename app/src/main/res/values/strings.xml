@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Capcars</string>
+    <string name="app_name" translatable="false">Capcars</string>
+
+    <string name="title_check_vehicle_availability">Check Vehicle Availability</string>
+    <string name="title_ready_to_explore">Ready to Explore Our Cars?</string>
+
+    <!-- Subtitles -->
+    <string name="subtitle_browse_car_collection">Browse our car collection, and find your next vehicle</string>
+    <string name="subtitle_explore_car_models">Explore Now</string>
+
+    <!-- Body Texts -->
+    <string name="body_car_availability_info">You want to ensure this vehicle is available in your area delivery.</string>
+
 </resources>
