@@ -31,7 +31,7 @@ import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
 import com.capgemini.commons.ui.theme.OnPrimary
-import com.capgemini.commons.ui.theme.SubtitleLightLarge
+import com.capgemini.commons.ui.theme.SubHeadlineMedium
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.dividerThickness
 import com.capgemini.commons.ui.theme.hugeSpacing
@@ -96,7 +96,7 @@ private fun OnboardingSubtitle() {
         Spacer(modifier = Modifier.width(smallSpacing))
         Text(
             text = stringResource(R.string.subtitle_explore_car_models),
-            style = SubtitleLightLarge
+            style = SubHeadlineMedium
         )
     }
 }

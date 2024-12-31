@@ -34,23 +34,7 @@ val HeadlineExtraLarge = TextStyle(
     color = OnPrimary
 )
 
-val HeadlineLarge = TextStyle(
-    fontSize = 30.sp,
-    lineHeight = 36.sp,
-    fontFamily = FontFamily(Font(R.font.poppins_bold)),
-    fontWeight = FontWeight.Bold,
-    color = OnPrimary
-)
-
-val HeadlineMedium = TextStyle(
-    fontSize = 24.sp,
-    lineHeight = 30.sp,
-    fontFamily = FontFamily(Font(R.font.poppins_bold)),
-    fontWeight = FontWeight.Bold,
-    color = OnPrimary
-)
-
-val SubtitleExtraLarge = TextStyle(
+val SubHeadlineExtraLarge = TextStyle(
     fontSize = 40.sp,
     lineHeight = 48.sp,
     fontFamily = FontFamily(Font(R.font.oswald_light)),
@@ -58,23 +42,15 @@ val SubtitleExtraLarge = TextStyle(
     color = OnSurface
 )
 
-val SubtitleLightLarge = TextStyle(
-    fontSize = 24.sp,
-    lineHeight = 30.sp,
+val SubHeadlineMedium = TextStyle(
+    fontSize = 26.sp,
+    lineHeight = 32.sp,
     fontFamily = FontFamily(Font(R.font.oswald_light)),
     fontWeight = FontWeight.Normal,
     color = OnPrimary
 )
 
-val SubtitleMedium = TextStyle(
-    fontSize = 24.sp,
-    lineHeight = 30.sp,
-    fontFamily = FontFamily(Font(R.font.oswald_medium)),
-    fontWeight = FontWeight.Medium,
-    color = OnSurface
-)
-
-val SubtitleLightSmall = TextStyle(
+val SubHeadlineSmall = TextStyle(
     fontSize = 14.sp,
     lineHeight = 20.sp,
     fontFamily = FontFamily(Font(R.font.oswald_light)),
@@ -82,7 +58,7 @@ val SubtitleLightSmall = TextStyle(
     color = OnSurface
 )
 
-val SubtitleExtraSmall = TextStyle(
+val BodyLight = TextStyle(
     fontSize = 14.sp,
     lineHeight = 18.sp,
     fontFamily = FontFamily(Font(R.font.oswald_medium)),
@@ -91,11 +67,19 @@ val SubtitleExtraSmall = TextStyle(
 )
 
 val BodySmall = TextStyle(
-    fontSize = 12.sp,
+    fontSize = 14.sp,
     lineHeight = 18.sp,
     fontFamily = FontFamily(Font(R.font.poppins_regular)),
     fontWeight = FontWeight.Normal,
     color = OnPrimary
+)
+
+val LabelValue = TextStyle(
+    fontSize = 24.sp,
+    lineHeight = 26.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_bold)),
+    fontWeight = FontWeight.Bold,
+    color = OnSurface
 )
 
 val PrimaryButtonText = TextStyle(

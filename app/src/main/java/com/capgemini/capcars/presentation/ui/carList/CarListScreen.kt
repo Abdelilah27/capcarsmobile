@@ -39,14 +39,14 @@ import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
 import com.capgemini.commons.ui.theme.Background
+import com.capgemini.commons.ui.theme.BodyLight
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
+import com.capgemini.commons.ui.theme.LabelValue
 import com.capgemini.commons.ui.theme.OnSecondary
 import com.capgemini.commons.ui.theme.PrimaryButtonText
 import com.capgemini.commons.ui.theme.Secondary
-import com.capgemini.commons.ui.theme.SubtitleExtraLarge
-import com.capgemini.commons.ui.theme.SubtitleExtraSmall
-import com.capgemini.commons.ui.theme.SubtitleLightSmall
-import com.capgemini.commons.ui.theme.SubtitleMedium
+import com.capgemini.commons.ui.theme.SubHeadlineExtraLarge
+import com.capgemini.commons.ui.theme.SubHeadlineSmall
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.extraLargeSpacing
 import com.capgemini.commons.ui.theme.iconSize
@@ -147,14 +147,14 @@ private fun CarCard(car: CarItem) {
             // Car Brand
             Text(
                 text = car.brand,
-                style = SubtitleExtraLarge,
+                style = SubHeadlineExtraLarge,
                 modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
             )
 
             // Year and Model
             Text(
                 text = "${car.year} - ${car.model}",
-                style = SubtitleLightSmall,
+                style = SubHeadlineSmall,
                 modifier = Modifier.padding(start = 16.dp, end = 16.dp)
             )
 
@@ -227,7 +227,7 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
 
         Text(
             text = label,
-            style = SubtitleExtraSmall
+            style = BodyLight
         )
 
         Spacer(modifier = Modifier.weight(0.3f))
@@ -235,7 +235,7 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
         // Centered value
         Text(
             text = value,
-            style = SubtitleMedium,
+            style = LabelValue,
             modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
