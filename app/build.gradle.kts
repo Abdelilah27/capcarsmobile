@@ -21,6 +21,11 @@ android {
         versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String", "API_BASE_URL",
+            { project.findProperty("API_BASE_URL") }.toString()
+        )
     }
 
     buildTypes {
