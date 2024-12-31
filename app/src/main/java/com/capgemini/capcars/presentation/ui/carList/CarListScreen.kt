@@ -1,17 +1,18 @@
 package com.capgemini.capcars.presentation.ui.carList
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import timber.log.Timber
 
 @Composable
 fun CarListScreen(carListState: CarListState) {
-
-
+    val context = LocalContext.current
     when (carListState) {
 
         is CarListState.Error -> {
-            Timber.tag("CarListScreen").d("Error")
+            val errorMessage = carListState.message.getMessage(context)
+            Timber.tag("CarListScreen").d("Error: $errorMessage")
         }
 
         CarListState.Loading -> {

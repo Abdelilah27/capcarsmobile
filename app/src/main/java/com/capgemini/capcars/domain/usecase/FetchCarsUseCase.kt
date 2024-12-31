@@ -1,11 +1,11 @@
 package com.capgemini.capcars.domain.usecase
 
 import com.capgemini.capcars.data.network.CarItem
+import com.capgemini.capcars.data.network.NetworkError
+import com.capgemini.capcars.data.network.Result
 import com.capgemini.capcars.data.repository.CarRepository
 import com.capgemini.capcars.domain.core.di.IODispatcher
-import com.capgemini.capcars.domain.core.di.MainDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -21,15 +21,21 @@ class FetchCarsUseCase @Inject constructor(
 ) {
     operator fun invoke() = flow {
         emit(FetchCarState.Loading)
-        val cars = repository.getCars()
-        emit(FetchCarState.Success(cars))
-    }.flowOn(dispatcher).catch { _ ->
-        emit(FetchCarState.Error)
+        when (val result = repository.getCars()) {
+            is Result.Success -> {
+                emit(FetchCarState.Success(result.data))
+            }
+            is Result.Failure -> {
+                emit(FetchCarState.Error(result.error))
+            }
+        }
+    }.flowOn(dispatcher).catch { exception ->
+        emit(FetchCarState.Error(NetworkError.Unknown))
     }
 }
 
 sealed interface FetchCarState {
     object Loading : FetchCarState
     data class Success(val cars: List<CarItem>) : FetchCarState
-    object Error : FetchCarState
+    data class Error(val error: NetworkError) : FetchCarState
 }

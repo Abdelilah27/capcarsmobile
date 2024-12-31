@@ -11,4 +11,9 @@
     <!-- Body Texts -->
     <string name="body_car_availability_info">You want to ensure this vehicle is available in your area delivery.</string>
 
+    <!-- Network Errors -->
+    <string name="no_internet_connection">No internet connection.</string>
+    <string name="api_error">API error: %1$d - %2$s</string>
+    <string name="timeout">Network timeout. Please try again.</string>
+    <string name="unknown_error">Unknown error occurred. Please try again.</string>
 </resources>

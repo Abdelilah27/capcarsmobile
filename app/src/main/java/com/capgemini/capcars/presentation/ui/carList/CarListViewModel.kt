@@ -1,8 +1,10 @@
 package com.capgemini.capcars.presentation.ui.carList
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capgemini.capcars.data.network.CarItem
+import com.capgemini.capcars.data.network.NetworkError
 import com.capgemini.capcars.domain.usecase.FetchCarState
 import com.capgemini.capcars.domain.usecase.FetchCarsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CarListViewModel @Inject constructor(
-    private val fetchCarsUseCase: FetchCarsUseCase
+    private val fetchCarsUseCase: FetchCarsUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<CarListState>(CarListState.NoState)
@@ -41,7 +43,7 @@ class CarListViewModel @Inject constructor(
                     }
 
                     is FetchCarState.Error -> {
-                        _state.value = CarListState.Error("Failed to fetch car list")
+                        _state.value = CarListState.Error(state.error)
                     }
                 }
             }
@@ -52,6 +54,6 @@ class CarListViewModel @Inject constructor(
 sealed class CarListState {
     object Loading : CarListState()
     data class Success(val cars: List<CarItem>) : CarListState()
-    data class Error(val message: String) : CarListState()
-    object NoState : CarListState() // For any other cases
+    data class Error(val message: NetworkError) : CarListState()
+    object NoState : CarListState()
 }
