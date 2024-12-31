@@ -1,6 +1,6 @@
 package com.capgemini.capcars.data.repository
 
-import com.capgemini.capcars.data.dataSource.CarRemoteDataSource
+import com.capgemini.capcars.data.datasource.CarRemoteDataSource
 import com.capgemini.capcars.data.network.CarItem
 import javax.inject.Inject
 

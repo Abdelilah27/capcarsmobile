@@ -1,4 +1,4 @@
-package com.capgemini.capcars.data.dataSource
+package com.capgemini.capcars.data.datasource
 
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.data.service.CarService
