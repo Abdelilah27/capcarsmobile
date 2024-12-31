@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 
 // Brand Colors
 val Primary = Color(0xFFF7BC28)     // Yellow
+val primaryDark = Color(0xFFD99B04)     // DarkerYellow
 val PrimaryVariant = Color(0xFFF5A623) // Slightly darker yellow variant
 val Secondary = Color(0xFF000000)   // Black
 val SecondaryVariant = Color(0xFF333333) // Slightly lighter black for backgrounds
