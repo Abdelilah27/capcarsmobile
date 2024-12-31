@@ -14,5 +14,6 @@ data class CarItem(
     @SerializedName("mpg") val mpg: String,
     @SerializedName("hp") val hp: Int,
     @SerializedName("perf") val perf: String,
-    @SerializedName("image") val image: String
+    @SerializedName("image") val image: String,
+    val processedPerf: String
 )

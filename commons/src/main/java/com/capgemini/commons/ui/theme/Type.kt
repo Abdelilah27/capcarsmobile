@@ -26,6 +26,14 @@ val Typography = Typography(
     ),
 )
 
+val HeadlineExtraLarge = TextStyle(
+    fontSize = 38.sp,
+    lineHeight = 46.sp,
+    fontFamily = FontFamily(Font(R.font.poppins_bold)),
+    fontWeight = FontWeight.Bold,
+    color = OnPrimary
+)
+
 val HeadlineLarge = TextStyle(
     fontSize = 30.sp,
     lineHeight = 36.sp,
@@ -42,7 +50,15 @@ val HeadlineMedium = TextStyle(
     color = OnPrimary
 )
 
-val SubtitleLarge = TextStyle(
+val SubtitleExtraLarge = TextStyle(
+    fontSize = 40.sp,
+    lineHeight = 48.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_light)),
+    fontWeight = FontWeight.Bold,
+    color = OnSurface
+)
+
+val SubtitleLightLarge = TextStyle(
     fontSize = 24.sp,
     lineHeight = 30.sp,
     fontFamily = FontFamily(Font(R.font.oswald_light)),
@@ -50,20 +66,28 @@ val SubtitleLarge = TextStyle(
     color = OnPrimary
 )
 
-val SubtitleSmall = TextStyle(
-    fontSize = 20.sp,
-    lineHeight = 24.sp,
-    fontFamily = FontFamily(Font(R.font.oswald_light)),
-    fontWeight = FontWeight.Normal,
-    color = OnPrimary
+val SubtitleMedium = TextStyle(
+    fontSize = 24.sp,
+    lineHeight = 30.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_medium)),
+    fontWeight = FontWeight.Medium,
+    color = OnSurface
 )
 
-val BodyMedium = TextStyle(
+val SubtitleLightSmall = TextStyle(
     fontSize = 14.sp,
-    lineHeight = 16.sp,
-    fontFamily = FontFamily(Font(R.font.poppins_regular)),
-    fontWeight = FontWeight.Normal,
-    color = OnPrimary
+    lineHeight = 20.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_light)),
+    fontWeight = FontWeight.Light,
+    color = OnSurface
+)
+
+val SubtitleExtraSmall = TextStyle(
+    fontSize = 14.sp,
+    lineHeight = 18.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_medium)),
+    fontWeight = FontWeight.Medium,
+    color = LightGray
 )
 
 val BodySmall = TextStyle(
@@ -72,4 +96,12 @@ val BodySmall = TextStyle(
     fontFamily = FontFamily(Font(R.font.poppins_regular)),
     fontWeight = FontWeight.Normal,
     color = OnPrimary
+)
+
+val PrimaryButtonText = TextStyle(
+    fontSize = 14.sp,
+    lineHeight = 24.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_medium)),
+    fontWeight = FontWeight.Medium,
+    color = OnSecondary
 )

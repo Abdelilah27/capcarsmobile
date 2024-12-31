@@ -17,7 +17,7 @@ val OnSurfaceVariant = Color(0xFFCDD2E4)   // Grey text/icons on white surfaces
 val OnPrimary = Color(0xFFFFFFFF)   // White text/icons on yellow backgrounds
 val OnSecondary = Color(0xFFF7BC28) // Yellow text/icons on black surfaces
 
-val Divider = Color(0xFFE0E0E0)     // Light gray divider color
+val LightGray = Color(0xFF9aa2b7)     // Light gray color
 
 // Custom Gradient Colors
 val GradientStart = Color(0xFFF7BC28)  // Yellow

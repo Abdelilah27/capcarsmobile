@@ -39,7 +39,11 @@ class CarListViewModel @Inject constructor(
                     }
 
                     is FetchCarState.Success -> {
-                        _state.value = CarListState.Success(state.cars)
+                        // Process the cars to extract and set the performance value
+                        val processedCars = state.cars.map { car ->
+                            car.copy(processedPerf = extractPerformanceValue(car.perf))
+                        }
+                        _state.value = CarListState.Success(processedCars)
                     }
 
                     is FetchCarState.Error -> {
@@ -48,6 +52,11 @@ class CarListViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private fun extractPerformanceValue(perf: String): String {
+        val regex = "\\d+\\.\\d+".toRegex() // Matches decimal numbers like 4.0
+        return regex.find(perf)?.value ?: "N/A" // Return the matched value or a default
     }
 }
 

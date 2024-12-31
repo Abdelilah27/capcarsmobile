@@ -2,6 +2,7 @@
     <string name="app_name" translatable="false">Capcars</string>
 
     <string name="title_check_vehicle_availability">Check Vehicle Availability</string>
+    <string name="title_see_available_vehicle">See Available Vehicle</string>
     <string name="title_ready_to_explore">Ready to Explore Our Cars?</string>
 
     <!-- Subtitles -->
@@ -16,4 +17,12 @@
     <string name="api_error">API error: %1$d - %2$s</string>
     <string name="timeout">Network timeout. Please try again.</string>
     <string name="unknown_error">Unknown error occurred. Please try again.</string>
+
+    <!-- Performance Metric -->
+    <string name="mpg_label">MPG</string>
+    <string name="hp_label">HP</string>
+    <string name="zero_to_sixty_label">0–60</string>
+
+    <!-- Button Texts -->
+    <string name="see_this_vehicle">See Available Vehicle</string>
 </resources>

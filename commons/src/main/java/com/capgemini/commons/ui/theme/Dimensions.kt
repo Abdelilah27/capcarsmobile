@@ -16,7 +16,7 @@ val smallSpacing = 8.dp
 val regularSpacing = 12.dp
 val mediumSpacing = 16.dp
 val largeSpacing = 24.dp
-val extraLargeSpacing = 24.dp
+val extraLargeSpacing = 36.dp
 val hugeSpacing = 50.dp
 
 // Divider

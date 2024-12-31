@@ -29,9 +29,9 @@ import com.capgemini.capcars.R
 import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart
-import com.capgemini.commons.ui.theme.HeadlineLarge
+import com.capgemini.commons.ui.theme.HeadlineExtraLarge
 import com.capgemini.commons.ui.theme.OnPrimary
-import com.capgemini.commons.ui.theme.SubtitleLarge
+import com.capgemini.commons.ui.theme.SubtitleLightLarge
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.dividerThickness
 import com.capgemini.commons.ui.theme.hugeSpacing
@@ -79,7 +79,7 @@ private fun OnboardingContent() {
 private fun OnboardingTitle() {
     Text(
         text = stringResource(R.string.title_check_vehicle_availability),
-        style = HeadlineLarge
+        style = HeadlineExtraLarge
     )
 }
 
@@ -96,7 +96,7 @@ private fun OnboardingSubtitle() {
         Spacer(modifier = Modifier.width(smallSpacing))
         Text(
             text = stringResource(R.string.subtitle_explore_car_models),
-            style = SubtitleLarge
+            style = SubtitleLightLarge
         )
     }
 }
