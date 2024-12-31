@@ -4,11 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.capgemini.capcars.ui.carsList.CarsListScreen
-import com.capgemini.capcars.ui.onBoarding.OnBoardingScreen
+import com.capgemini.capcars.ui.navigation.AppNavHost
 import com.capgemini.capcars.ui.theme.CapcarsTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,14 +16,7 @@ class MainActivity : ComponentActivity() {
             // TODO SCAT
             CapcarsTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "onboarding_screen") {
-                    composable("onboarding_screen") {
-                        OnBoardingScreen(navController = navController)
-                    }
-                    composable("cars_list_screen") {
-                        CarsListScreen(navController = navController)
-                    }
-                }
+                AppNavHost(navController = navController)
             }
         }
     }
