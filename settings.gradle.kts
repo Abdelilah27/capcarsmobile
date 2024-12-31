@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Capcars"
 include(":app")
-include(":Commons")
+include(":commons")

@@ -51,8 +51,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":Commons"))
 
+    implementation(project(":commons"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

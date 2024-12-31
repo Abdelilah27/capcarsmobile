@@ -1,8 +1,8 @@
 package com.capgemini.capcars.presentation.ui.carList
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import timber.log.Timber
 
 @Composable
 fun CarListScreen(carListState: CarListState) {
@@ -11,19 +11,20 @@ fun CarListScreen(carListState: CarListState) {
     when (carListState) {
 
         is CarListState.Error -> {
-            Log.d("CarListScreen", "Error")
+            Timber.tag("CarListScreen").d("Error")
         }
 
         CarListState.Loading -> {
-            Log.d("CarListScreen", "Loading ...")
+            Timber.tag("CarListScreen").d("Loading ...")
         }
 
         CarListState.NoState -> {
-            Log.d("CarListScreen", "NoState")
+            Timber.tag("CarListScreen").d("NoState")
         }
 
         is CarListState.Success -> {
-            Log.d("CarListScreen", "Success: ${carListState.cars.joinToString(", ") { it.model }}")
+            Timber.tag("CarListScreen")
+                .d("Success: ${carListState.cars.joinToString(", ") { it.model }}")
         }
     }
 }
