@@ -1,4 +1,4 @@
-package com.capgemini.capcars.ui.onboarding
+package com.capgemini.capcars.presentation.ui.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.capgemini.capcars.R
-import com.capgemini.capcars.ui.navigation.NavigationItem
+import com.capgemini.capcars.presentation.ui.navigation.NavigationItem
 import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart

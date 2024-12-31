@@ -1,4 +1,4 @@
-package com.capgemini.capcars.ui.theme
+package com.capgemini.capcars.presentation.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme

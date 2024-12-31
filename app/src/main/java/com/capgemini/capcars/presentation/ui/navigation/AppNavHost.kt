@@ -1,12 +1,12 @@
-package com.capgemini.capcars.ui.navigation
+package com.capgemini.capcars.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.capgemini.capcars.ui.carsList.CarListScreen
-import com.capgemini.capcars.ui.onboarding.OnboardingScreen
+import com.capgemini.capcars.presentation.ui.carList.CarListScreen
+import com.capgemini.capcars.presentation.ui.onboarding.OnboardingScreen
 
 // AppNavHost.kt
 @Composable

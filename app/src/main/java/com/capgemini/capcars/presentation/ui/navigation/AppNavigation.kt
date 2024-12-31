@@ -1,4 +1,4 @@
-package com.capgemini.capcars.ui.navigation
+package com.capgemini.capcars.presentation.ui.navigation
 
 enum class Screen {
     ONBOARDING,
