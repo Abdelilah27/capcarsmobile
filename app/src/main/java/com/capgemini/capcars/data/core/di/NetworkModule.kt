@@ -2,6 +2,7 @@ package com.capgemini.capcars.data.core.di
 
 import com.capgemini.capcars.BuildConfig
 import com.capgemini.capcars.data.core.adapters.NetworkResponseAdapterFactory
+import com.capgemini.capcars.data.service.CarService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -45,6 +46,11 @@ object NetworkModule {
                 .setLenient()
                 .create()
         )
+    }
+
+    @Provides
+    fun providesCarService(retrofit: Retrofit): CarService {
+        return retrofit.create(CarService::class.java)
     }
 
 }

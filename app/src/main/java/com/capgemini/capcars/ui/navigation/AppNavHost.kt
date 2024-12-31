@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.capgemini.capcars.ui.carsList.CarListScreen
-import com.capgemini.capcars.ui.onBoarding.OnboardingScreen
+import com.capgemini.capcars.ui.onboarding.OnboardingScreen
 
 // AppNavHost.kt
 @Composable

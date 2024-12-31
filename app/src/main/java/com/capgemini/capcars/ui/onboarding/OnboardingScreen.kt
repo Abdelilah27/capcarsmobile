@@ -1,4 +1,4 @@
-package com.capgemini.capcars.ui.onBoarding
+package com.capgemini.capcars.ui.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
