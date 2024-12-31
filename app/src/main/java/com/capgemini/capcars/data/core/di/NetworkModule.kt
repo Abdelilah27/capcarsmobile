@@ -1,7 +1,6 @@
 package com.capgemini.capcars.data.core.di
 
 import com.capgemini.capcars.BuildConfig
-import com.capgemini.capcars.data.core.adapters.NetworkResponseAdapterFactory
 import com.capgemini.capcars.data.service.CarService
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -33,7 +32,6 @@ object NetworkModule {
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_BASE_URL)
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .addConverterFactory(converterFactory)
             .client(okHttpClient)
             .build()
