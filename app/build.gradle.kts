@@ -22,10 +22,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField(
-            "String", "API_BASE_URL",
-            { project.findProperty("API_BASE_URL") }.toString()
-        )
+        buildConfigField("String", "API_BASE_URL", "\"${project.findProperty("API_BASE_URL")}\"")
     }
 
     buildTypes {
@@ -37,15 +34,19 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = libs.versions.jvmTarget.get()
     }
+
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
