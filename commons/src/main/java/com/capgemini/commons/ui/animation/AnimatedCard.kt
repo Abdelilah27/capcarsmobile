@@ -7,6 +7,7 @@ import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -54,7 +55,8 @@ fun AnimatedCardContent(
                 translationY = slideIn.value.value // Apply sliding effect
             )
             .background(Background),
-        shape = RoundedCornerShape(largeShapeRadius)
+        shape = RoundedCornerShape(largeShapeRadius),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         content(Modifier)
     }
