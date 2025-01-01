@@ -6,6 +6,7 @@ import com.capgemini.capcars.data.network.Result
 import com.capgemini.capcars.data.repository.CarRepository
 import com.capgemini.capcars.domain.core.di.IODispatcher
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -15,11 +16,15 @@ import javax.inject.Inject
  * Retrieves the list of cars.
  */
 
-class FetchCarsUseCase @Inject constructor(
+interface FetchCarsUseCase {
+    operator fun invoke(): Flow<FetchCarState>
+}
+
+class FetchCarsUseCaseImpl @Inject constructor(
     private val repository: CarRepository,
     @IODispatcher private val dispatcher: CoroutineDispatcher
-) {
-    operator fun invoke() = flow {
+) : FetchCarsUseCase {
+    override fun invoke() = flow {
         emit(FetchCarState.Loading)
         when (val result = repository.getCars()) {
             is Result.Success -> {

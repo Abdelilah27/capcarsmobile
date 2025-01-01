@@ -7,7 +7,6 @@ import com.capgemini.capcars.presentation.ui.utils.cropLeftBitmap
 import io.mockk.coEvery
 import io.mockk.mockk
 import io.mockk.mockkStatic
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test

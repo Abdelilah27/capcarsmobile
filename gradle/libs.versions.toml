@@ -18,6 +18,7 @@ gson = "2.9.0"
 timber = "5.0.1"
 coil = "2.2.2"
 mockk = "1.12.3"
+mockito = "4.0.0"
 
 # Build versions
 minSdk = "24"
@@ -63,6 +64,9 @@ coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", ve
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockito" }
 
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 

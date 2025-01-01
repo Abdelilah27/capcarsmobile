@@ -27,7 +27,7 @@ class FetchCarsUseCaseTest {
     private val repository = mockk<CarRepository>()
 
     // Instantiating the FetchCarsUseCase with the mocked repository and a dispatcher (IO thread for background work)
-    private val useCase = FetchCarsUseCase(repository, Dispatchers.IO)
+    private val useCase = FetchCarsUseCaseImpl(repository, Dispatchers.IO)
 
     // Sample list of valid cars used for testing purposes
     private val validCars = listOf(
