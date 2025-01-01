@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -23,6 +22,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -36,6 +39,7 @@ import coil.request.ImageRequest
 import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
+import com.capgemini.commons.ui.components.ErrorAlertDialog
 import com.capgemini.commons.ui.components.LoadingIndicator
 import com.capgemini.commons.ui.components.PrimaryButton
 import com.capgemini.commons.ui.theme.Background
@@ -56,8 +60,11 @@ import com.capgemini.commons.ui.theme.smallSpacing
 import timber.log.Timber
 
 @Composable
-fun CarListScreen(carListState: CarListState) {
+fun CarListScreen(carListState: CarListState, onBackClicked: () -> Unit) {
     val context = LocalContext.current
+
+    var showRetryDialog by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
 
     Scaffold(
         modifier = Modifier.fillMaxSize()
@@ -68,14 +75,15 @@ fun CarListScreen(carListState: CarListState) {
                 .padding(largeSpacing)
                 .fillMaxSize()
         ) {
-            ArrowIcon()
+            ArrowIcon(onBackClicked)
             Spacer(modifier = Modifier.height(extraLargeSpacing))
             CarListHeader()
             Spacer(modifier = Modifier.weight(1.1f))
 
             when (carListState) {
                 is CarListState.Error -> {
-                    val errorMessage = carListState.message.getMessage(context)
+                    errorMessage = carListState.message.getMessage(context)
+                    showRetryDialog = true
                     Timber.tag("CarListScreen").d("Error: $errorMessage")
                 }
 
@@ -93,17 +101,30 @@ fun CarListScreen(carListState: CarListState) {
             }
         }
     }
+
+    if (showRetryDialog) {
+        ErrorAlertDialog(
+            errorMessage = errorMessage,
+            onRetry = {
+                showRetryDialog = false
+            },
+            onDismiss = {
+                onBackClicked()
+                showRetryDialog = false
+            }
+        )
+    }
 }
 
 @Composable
-private fun ArrowIcon() {
+private fun ArrowIcon(onBackClicked: () -> Unit) {
     Icon(
         painter = painterResource(id = R.drawable.baseline_keyboard_backspace_24),
         contentDescription = "Back",
         tint = Secondary,
         modifier = Modifier
             .size(iconSize)
-            .clickable { }
+            .clickable { onBackClicked() }
     )
 }
 
@@ -256,5 +277,6 @@ private fun CarImage(imageUrl: String) {
 @Preview(showBackground = true)
 @Composable
 private fun CarListScreenPreview() {
-    CarListScreen(CarListState.NoState)
+    CarListScreen(CarListState.NoState, {})
+    CarListScreen(CarListState.Loading, {})
 }

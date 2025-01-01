@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Error Alert Dialog Texts -->
+    <string name="error_title">Error</string>
+    <string name="retry_button_text">Retry</string>
+    <string name="dismiss_button_text">Dismiss</string>
+</resources>

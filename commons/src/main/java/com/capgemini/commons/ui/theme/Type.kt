@@ -89,3 +89,11 @@ val PrimaryButtonText = TextStyle(
     fontWeight = FontWeight.Medium,
     color = OnSecondary
 )
+
+val SecondaryButtonText = TextStyle(
+    fontSize = 14.sp,
+    lineHeight = 24.sp,
+    fontFamily = FontFamily(Font(R.font.oswald_medium)),
+    fontWeight = FontWeight.Medium,
+    color = OnSurface
+)

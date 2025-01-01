@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import com.capgemini.commons.ui.theme.OnSecondary
 import com.capgemini.commons.ui.theme.PrimaryButtonText
 import com.capgemini.commons.ui.theme.Secondary
+import com.capgemini.commons.ui.theme.SecondaryButtonText
 import com.capgemini.commons.ui.theme.largeShapeRadius
 import com.capgemini.commons.ui.theme.smallSpacing
 
@@ -32,6 +33,52 @@ fun PrimaryButton(
         Text(
             text = text.uppercase(),
             style = PrimaryButtonText,
+            modifier = Modifier.padding(smallSpacing)
+        )
+    }
+}
+
+@Composable
+fun RetryButton(
+    onClick: () -> Unit,
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.fillMaxWidth(),
+        colors = buttonColors(
+            containerColor = Secondary,
+            contentColor = OnSecondary
+        ),
+        shape = RoundedCornerShape(largeShapeRadius)
+    ) {
+        Text(
+            text = text.uppercase(),
+            style = PrimaryButtonText,
+            modifier = Modifier.padding(smallSpacing)
+        )
+    }
+}
+
+@Composable
+fun DismissButton(
+    onClick: () -> Unit,
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier.fillMaxWidth(),
+        colors = buttonColors(
+            containerColor = OnSecondary,
+            contentColor = Secondary
+        ),
+        shape = RoundedCornerShape(largeShapeRadius)
+    ) {
+        Text(
+            text = text.uppercase(),
+            style = SecondaryButtonText,
             modifier = Modifier.padding(smallSpacing)
         )
     }
