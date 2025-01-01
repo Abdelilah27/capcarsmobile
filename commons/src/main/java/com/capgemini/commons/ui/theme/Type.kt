@@ -43,8 +43,8 @@ val SubHeadlineExtraLarge = TextStyle(
 )
 
 val SubHeadlineMedium = TextStyle(
-    fontSize = 26.sp,
-    lineHeight = 32.sp,
+    fontSize = 30.sp,
+    lineHeight = 36.sp,
     fontFamily = FontFamily(Font(R.font.oswald_light)),
     fontWeight = FontWeight.Normal,
     color = OnPrimary

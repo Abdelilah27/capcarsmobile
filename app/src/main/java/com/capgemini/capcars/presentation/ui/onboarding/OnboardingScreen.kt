@@ -34,6 +34,7 @@ import com.capgemini.commons.ui.theme.OnPrimary
 import com.capgemini.commons.ui.theme.SubHeadlineMedium
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.dividerThickness
+import com.capgemini.commons.ui.theme.extraLargeSpacing
 import com.capgemini.commons.ui.theme.hugeSpacing
 import com.capgemini.commons.ui.theme.iconSize
 import com.capgemini.commons.ui.theme.largeSpacing
@@ -58,6 +59,7 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
                 .padding(24.dp)
                 .fillMaxSize()
         ) {
+            Spacer(modifier = Modifier.height(hugeSpacing))
             OnboardingContent()
             Spacer(modifier = Modifier.weight(1f))
             OnboardingFooter(onNavigate)
@@ -128,26 +130,26 @@ private fun OnboardingFooter(onNavigate: () -> Unit) {
         modifier = Modifier.fillMaxWidth()
     )
 
-    Spacer(modifier = Modifier.height(largeSpacing))
+    Spacer(modifier = Modifier.height(extraLargeSpacing))
 
-    // Sign-In Section
-    OnboardingSignInSection(onNavigate)
+    // Explore Now Section
+    OnboardingExploreNowSection(onNavigate)
 }
 
 @Composable
-private fun OnboardingSignInSection(onNavigate: () -> Unit) {
+private fun OnboardingExploreNowSection(onNavigate: () -> Unit) {
     Column(horizontalAlignment = Alignment.Start) {
         Text(
             text = stringResource(R.string.subtitle_browse_car_collection),
             style = BodySmall
         )
         Spacer(modifier = Modifier.height(tinySpacing))
-        SignInRow(onNavigate)
+        ExploreNowRow(onNavigate)
     }
 }
 
 @Composable
-private fun SignInRow(onNavigate: () -> Unit) {
+private fun ExploreNowRow(onNavigate: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.clickable {
