@@ -3,11 +3,11 @@ package com.capgemini.capcars.data
 import com.capgemini.capcars.data.datasource.CarRemoteDataSource
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.data.network.NetworkError
-import com.capgemini.capcars.data.repository.CarRepositoryImpl
 import com.capgemini.capcars.data.network.Result
+import com.capgemini.capcars.data.repository.CarRepositoryImpl
+import com.capgemini.capcars.utils.runTest
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -46,16 +46,17 @@ class CarRepositoryImplTest {
     )
 
     @Test
-    fun `should return list of cars when getCars is successful`() = runTest {
-        // Given: CarRemoteDataSource returns a successful result
-        coEvery { carRemoteDataSource.fetchCars() } returns Result.Success(validCars)
+    fun `should return list of cars when getCars is successful`() =
+        runTest {
+            // Given: CarRemoteDataSource returns a successful result
+            coEvery { carRemoteDataSource.fetchCars() } returns Result.Success(validCars)
 
-        // When: we call getCars on the repository
-        val result = repository.getCars()
+            // When: we call getCars on the repository
+            val result = repository.getCars()
 
-        // Then: the result should be a Success with the validCars list
-        assertEquals(Result.Success(validCars), result)
-    }
+            // Then: the result should be a Success with the validCars list
+            assertEquals(Result.Success(validCars), result)
+        }
 
     @Test
     fun `should return error when getCars fails`() = runTest {
