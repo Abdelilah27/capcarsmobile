@@ -4,6 +4,7 @@ import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.data.network.NetworkError
 import com.capgemini.capcars.data.network.Result
 import com.capgemini.capcars.data.service.CarService
+import com.capgemini.capcars.data.utlis.retryWithExponentialBackoff
 import okio.IOException
 import retrofit2.HttpException
 import java.util.concurrent.TimeoutException
@@ -19,21 +20,19 @@ class CarRemoteDataSourceImpl @Inject constructor(
 ) : CarRemoteDataSource {
 
     override suspend fun fetchCars(): Result<List<CarItem>> {
-        return try {
-            val response = carService.fetchCars()
-            Result.Success(response)
-        } catch (e: IOException) {
-            // Handle network errors like no internet
-            Result.Failure(NetworkError.NoInternetConnection)
-        } catch (e: HttpException) {
-            // Handle HTTP errors (e.g., 404, 500)
-            Result.Failure(NetworkError.ApiError(e.code(), e.message()))
-        } catch (e: TimeoutException) {
-            // Handle network timeout
-            Result.Failure(NetworkError.Timeout)
-        } catch (e: Exception) {
-            // Handle any other unexpected errors
-            Result.Failure(NetworkError.Unknown)
+        return retryWithExponentialBackoff {
+            try {
+                val response = carService.fetchCars()
+                Result.Success(response)
+            } catch (e: IOException) {
+                Result.Failure(NetworkError.NoInternetConnection)
+            } catch (e: HttpException) {
+                Result.Failure(NetworkError.ApiError(e.code(), e.message()))
+            } catch (e: TimeoutException) {
+                Result.Failure(NetworkError.Timeout)
+            } catch (e: Exception) {
+                Result.Failure(NetworkError.Unknown)
+            }
         }
     }
 }

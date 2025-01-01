@@ -26,6 +26,10 @@ class CarListViewModel @Inject constructor(
         fetchCars()
     }
 
+    fun retryFetchCars() {
+        fetchCars()
+    }
+
     @VisibleForTesting // TODO SCAT
     fun fetchCars() {
         viewModelScope.launch {
