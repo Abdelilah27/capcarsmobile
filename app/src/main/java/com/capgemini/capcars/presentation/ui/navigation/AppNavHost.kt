@@ -32,7 +32,11 @@ fun AppNavHost(
         composable(NavigationItem.CarList.route) {
             val viewModel: CarListViewModel = hiltViewModel()
             val carListState by viewModel.state.collectAsState()
-            CarListScreen(carListState, onBackClicked = {navController.popBackStack()})
+            CarListScreen(
+                carListState = carListState,
+                onBackClicked = { navController.popBackStack() },
+                onRetryClicked = { viewModel.retryFetchCars() }
+            )
         }
     }
 }

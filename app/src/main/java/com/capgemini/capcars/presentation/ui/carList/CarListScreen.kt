@@ -57,7 +57,11 @@ import com.capgemini.commons.ui.theme.smallSpacing
 import timber.log.Timber
 
 @Composable
-fun CarListScreen(carListState: CarListState, onBackClicked: () -> Unit) {
+fun CarListScreen(
+    carListState: CarListState,
+    onBackClicked: () -> Unit,
+    onRetryClicked: () -> Unit
+) {
     val context = LocalContext.current
 
     var showRetryDialog by remember { mutableStateOf(false) }
@@ -103,6 +107,7 @@ fun CarListScreen(carListState: CarListState, onBackClicked: () -> Unit) {
         ErrorAlertDialog(
             errorMessage = errorMessage,
             onRetry = {
+                onRetryClicked()
                 showRetryDialog = false
             },
             onDismiss = {
@@ -287,6 +292,6 @@ private fun CarActionButton() {
 @Preview(showBackground = true)
 @Composable
 private fun CarListScreenPreview() {
-    CarListScreen(CarListState.NoState, {})
-    CarListScreen(CarListState.Loading, {})
+    CarListScreen(CarListState.NoState, {}, {})
+    CarListScreen(CarListState.Loading, {}, {})
 }
