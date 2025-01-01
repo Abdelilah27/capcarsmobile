@@ -77,7 +77,6 @@ dependencies {
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
 
-
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
