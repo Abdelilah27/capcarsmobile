@@ -40,6 +40,5 @@ val largeCardWidth = 350.dp
 val smallCardHeight = 500.dp
 val largeCardHeight = 600.dp
 
-
 // Elevation
 val cardElevation: Dp = 2.dp

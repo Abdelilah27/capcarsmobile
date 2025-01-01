@@ -8,6 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Module for providing use case dependencies like FetchCarsUseCase.
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class UseCaseModule {

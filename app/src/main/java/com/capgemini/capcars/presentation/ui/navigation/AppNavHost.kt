@@ -13,7 +13,11 @@ import com.capgemini.capcars.presentation.ui.carList.CarListViewModel
 import com.capgemini.capcars.presentation.ui.onboarding.OnboardingScreen
 import com.capgemini.commons.ui.animation.NavigationAnimations
 
-// AppNavHost.kt
+/**
+ * Composable function that sets up navigation for the app using NavHost.
+ * Defines the start destination and handles navigation between different screens.
+ */
+
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
@@ -33,6 +37,7 @@ fun AppNavHost(
             )
         }
 
+        // CarList screen composable with custom enter/exit transitions
         composable(
             route = NavigationItem.CarList.route,
             enterTransition = { NavigationAnimations.slideInSpec },

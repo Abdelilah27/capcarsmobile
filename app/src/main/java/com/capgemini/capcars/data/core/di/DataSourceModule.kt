@@ -8,6 +8,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * This module provides dependency injection bindings for data sources in the application.
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DataSourceModule {

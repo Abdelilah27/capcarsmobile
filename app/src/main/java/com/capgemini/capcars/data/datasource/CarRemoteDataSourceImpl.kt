@@ -10,6 +10,10 @@ import retrofit2.HttpException
 import java.util.concurrent.TimeoutException
 import javax.inject.Inject
 
+/**
+ * Defines the contract and implementation for fetching car data from a remote source.
+ * Handles network operations and error management.
+ */
 
 interface CarRemoteDataSource {
     suspend fun fetchCars(): Result<List<CarItem>>
@@ -19,6 +23,7 @@ class CarRemoteDataSourceImpl @Inject constructor(
     private val carService: CarService
 ) : CarRemoteDataSource {
 
+    // Fetches car data with retry logic and error handling
     override suspend fun fetchCars(): Result<List<CarItem>> {
         return retryWithExponentialBackoff {
             try {

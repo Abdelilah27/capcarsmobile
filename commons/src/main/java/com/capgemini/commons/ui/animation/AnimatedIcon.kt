@@ -17,6 +17,17 @@ import com.capgemini.commons.ui.theme.OnPrimary
 import com.capgemini.commons.ui.theme.iconSize
 import kotlinx.coroutines.delay
 
+/**
+ * A composable function that animates an icon sliding out of the screen horizontally.
+ * The icon moves from its original position to the right side of the screen and triggers
+ * a navigation action once the animation completes.
+ *
+ * @param icon The [Painter] for the icon to be displayed.
+ * @param moveIcon A Boolean flag to control whether the icon should slide out of the screen.
+ * @param durationMillis The duration of the slide-out animation in milliseconds (default is 1500).
+ * @param onNavigate A lambda function that triggers navigation once the animation is complete.
+ */
+
 @Composable
 fun SlideOutIcon(
     icon: Painter,
@@ -31,14 +42,14 @@ fun SlideOutIcon(
         animationSpec = tween(durationMillis = durationMillis, easing = LinearEasing)
     )
 
-    // Animate icon's movement horizontally
+    // Apply animation to the icon
     Icon(
         painter = icon,
         contentDescription = null,
         tint = OnPrimary,
         modifier = Modifier
             .size(iconSize)
-            .offset(x = animatedOffset)
+            .offset(x = animatedOffset) // Apply horizontal movement
     )
 
     // Trigger navigation after animation ends

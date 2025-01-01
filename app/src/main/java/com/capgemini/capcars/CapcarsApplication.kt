@@ -9,6 +9,7 @@ class CapcarsApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Timber.plant(Timber.DebugTree()) // Debug builds
+        // Initialize Timber for logging in debug builds
+        Timber.plant(Timber.DebugTree())
     }
 }

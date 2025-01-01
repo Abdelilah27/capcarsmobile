@@ -13,12 +13,18 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
- * Retrieves the list of cars.
+ * Interface representing the use case for fetching car data.
+ * The `invoke` function is used to execute the use case logic.
  */
 
 interface FetchCarsUseCase {
     operator fun invoke(): Flow<FetchCarState>
 }
+
+/**
+ * Implementation of the FetchCarsUseCase interface.
+ * Handles fetching car data by interacting with the repository.
+ */
 
 class FetchCarsUseCaseImpl @Inject constructor(
     private val repository: CarRepository,
@@ -34,10 +40,16 @@ class FetchCarsUseCaseImpl @Inject constructor(
                 emit(FetchCarState.Error(result.error))
             }
         }
-    }.flowOn(dispatcher).catch {
+    }.flowOn(dispatcher) // Run this flow on the specified dispatcher (IO)
+        .catch {
         emit(FetchCarState.Error(NetworkError.Unknown))
     }
 }
+
+/**
+ * Sealed interface representing the states of fetching car data.
+ * Includes loading, success, and error states.
+ */
 
 sealed interface FetchCarState {
     object Loading : FetchCarState

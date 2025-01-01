@@ -21,6 +21,13 @@ import com.capgemini.commons.ui.theme.Background
 import com.capgemini.commons.ui.theme.cardElevation
 import com.capgemini.commons.ui.theme.largeShapeRadius
 
+/**
+ * Composable function to display an animated card with fade-in and slide-in effects.
+ *
+ * @param modifier Modifier to be applied to the card.
+ * @param content The composable content to display inside the card.
+ */
+
 @Composable
 fun AnimatedCardContent(
     modifier: Modifier = Modifier,

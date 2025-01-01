@@ -73,13 +73,13 @@ import timber.log.Timber
 
 @Composable
 fun CarListScreen(
-    carListState: CarListState,
+    carListState: CarListState, // Represents the current state of the car list
     onBackClicked: () -> Unit,
     onRetryClicked: () -> Unit
 ) {
     val context = LocalContext.current
 
-    var showRetryDialog by remember { mutableStateOf(false) }
+    var showRetryDialog by remember { mutableStateOf(false) } // Tracks if the retry dialog should be displayed
     var errorMessage by remember { mutableStateOf("") }
 
     LaunchedEffect(carListState) {
@@ -123,6 +123,7 @@ fun CarListScreen(
         }
     }
 
+    // Displays a retry dialog in case of an error
     if (showRetryDialog) {
         ErrorAlertDialog(
             errorMessage = errorMessage,
@@ -310,6 +311,7 @@ private fun CarImage(imageUrl: String) {
             .fillMaxWidth()
             .height(200.dp)
     ) {
+        // Asynchronously loads and displays image
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
                 .data(imageUrl)
@@ -327,7 +329,7 @@ private fun CarImage(imageUrl: String) {
 @Composable
 private fun CarActionButton() {
     PrimaryButton(
-        onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
+        onClick = { /* Handle button click, e.g., navigate to car details */ },
         text = stringResource(id = R.string.see_this_vehicle),
         modifier = Modifier
             .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)

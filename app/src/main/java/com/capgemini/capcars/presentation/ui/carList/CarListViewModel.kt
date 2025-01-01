@@ -19,9 +19,11 @@ class CarListViewModel @Inject constructor(
     private val fetchCarsUseCase: FetchCarsUseCase,
 ) : ViewModel() {
 
+    // Backing property for state management
     private val _state = MutableStateFlow<CarListState>(CarListState.NoState)
     val state: StateFlow<CarListState> = _state
 
+    // Initialize the ViewModel by fetching the cars immediately
     init {
         fetchCars()
     }
@@ -56,12 +58,14 @@ class CarListViewModel @Inject constructor(
         }
     }
 
+    // Helper function to extract a performance value from a string
     private fun extractPerformanceValue(perf: String): String {
         val regex = "\\d+\\.\\d+".toRegex() // Matches decimal numbers like 4.0
         return regex.find(perf)?.value ?: "N/A" // Return the matched value or a default
     }
 }
 
+// Represents the various UI states for the CarList
 sealed class CarListState {
     object Loading : CarListState()
     data class Success(val cars: List<CarItem>) : CarListState()

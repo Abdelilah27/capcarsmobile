@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.dp
 import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.LightGray
 import com.capgemini.commons.ui.theme.OnSurface
@@ -42,7 +41,7 @@ fun LoadingIndicator(
                 modifier = modifier
                     .background(Surface, shape = CircleShape)
                     .size(progressIndicatorSize)
-                    .padding(16.dp),
+                    .padding(mediumSpacing),
                 strokeWidth = loadingStrokeWidth,
                 color = OnSurface,
                 trackColor = LightGray

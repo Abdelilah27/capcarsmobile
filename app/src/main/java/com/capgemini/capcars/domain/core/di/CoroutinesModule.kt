@@ -8,6 +8,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
 
+/**
+ * Module for providing Coroutine Dispatchers for different use cases like Main and IO threads.
+ */
+
 @InstallIn(SingletonComponent::class)
 @Module
 class CoroutinesModule { // TODO SCAT

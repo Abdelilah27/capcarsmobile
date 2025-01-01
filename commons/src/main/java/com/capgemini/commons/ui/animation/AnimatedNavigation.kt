@@ -4,6 +4,11 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 
+/**
+ * A collection of slide-in and slide-out animations used for screen transitions in the app.
+ * These animations are configured for horizontal sliding, both for entering and exiting screens.
+ */
+
 object NavigationAnimations {
 
     // Slide-in animation (entering the screen)

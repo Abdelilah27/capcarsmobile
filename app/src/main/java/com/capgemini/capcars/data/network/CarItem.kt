@@ -3,7 +3,8 @@ package com.capgemini.capcars.data.network
 import com.google.gson.annotations.SerializedName
 
 /**
- * Describes a CarItem item
+ * Represents a car item retrieved from the remote API.
+ * Includes details such as brand, model, year, performance, and more.
  */
 
 data class CarItem(

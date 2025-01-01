@@ -14,10 +14,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+/**
+ * Provides network-related dependencies, including OkHttpClient, Retrofit, and CarService.
+ * These components are essential for making API calls in the application.
+ */
+
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    // Provides a configured OkHttpClient with timeouts and retry policies
     @Provides
     fun providesOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)

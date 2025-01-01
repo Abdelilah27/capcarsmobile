@@ -15,7 +15,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            // TODO SCAT
             CapcarsTheme {
                 val navController = rememberNavController()
                 AppNavHost(navController = navController)
