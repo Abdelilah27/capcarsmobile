@@ -24,3 +24,7 @@ val iconSize: Dp = 24.dp
 val dividerThickness: Dp = 0.3.dp
 val progressIndicatorSize: Dp = 64.dp
 val loadingStrokeWidth: Dp = 4.dp
+
+
+// Elevation
+val cardElevation: Dp = 2.dp

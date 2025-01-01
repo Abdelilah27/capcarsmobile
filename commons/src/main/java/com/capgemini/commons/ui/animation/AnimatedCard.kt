@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import com.capgemini.commons.ui.theme.Background
+import com.capgemini.commons.ui.theme.cardElevation
 import com.capgemini.commons.ui.theme.largeShapeRadius
 
 @Composable
@@ -56,7 +57,7 @@ fun AnimatedCardContent(
             )
             .background(Background),
         shape = RoundedCornerShape(largeShapeRadius),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = cardElevation)
     ) {
         content(Modifier)
     }
