@@ -100,4 +100,7 @@ dependencies {
     // Coil for loading images
     implementation(libs.coil.compose)
 
+    // Leakcanary for detecting memory leaks
+    debugImplementation (libs.leakcanary.android)
+
 }
