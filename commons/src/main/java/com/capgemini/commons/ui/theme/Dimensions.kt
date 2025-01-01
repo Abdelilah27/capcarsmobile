@@ -29,7 +29,7 @@ val loadingStrokeWidth: Dp = 4.dp
 // Dynamic Font Size
 val extraLargeFontSize = 40.sp
 val largeFontSize = 32.sp
-val mediumFontSize = 14.sp
+val mediumFontSize = 24.sp
 val regularFontSize = 16.sp
 val smallFontSize = 14.sp
 val tinyFontSize = 12.sp

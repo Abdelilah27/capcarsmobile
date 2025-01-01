@@ -191,7 +191,7 @@ fun CarCard(car: CarItem) {
             ) {
                 CarInfoSection(car)
 
-                Spacer(modifier = Modifier.height(if (LocalConfiguration.current.screenWidthDp < 450) tinySpacing else regularSpacing))
+                Spacer(modifier = Modifier.height(if (LocalConfiguration.current.screenWidthDp < 420) tinySpacing else regularSpacing))
 
                 // Performance Section (MPG, HP, Perf)
                 PerformanceSection(car)
@@ -213,14 +213,14 @@ private fun CarInfoSection(car: CarItem) {
     // Car Brand
     Text(
         text = car.brand,
-        style = SubHeadlineExtraLarge.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 450) largeFontSize else extraLargeFontSize),
+        style = SubHeadlineExtraLarge.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) largeFontSize else extraLargeFontSize),
         modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
     )
 
     // Year and Model
     Text(
         text = "${car.year} - ${car.model}",
-        style = SubHeadlineSmall.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 450) tinyFontSize else smallFontSize),
+        style = SubHeadlineSmall.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) tinyFontSize else smallFontSize),
         modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
     )
 }
@@ -268,7 +268,7 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
 
         Text(
             text = label,
-            style = BodyLight.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 450) tinyFontSize else smallFontSize)
+            style = BodyLight.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) tinyFontSize else smallFontSize)
         )
 
         Spacer(modifier = Modifier.weight(0.3f))
@@ -276,7 +276,7 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
         // Centered value
         Text(
             text = value,
-            style = LabelValue.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 450) regularFontSize else mediumFontSize),
+            style = LabelValue.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) regularFontSize else mediumFontSize),
             modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
