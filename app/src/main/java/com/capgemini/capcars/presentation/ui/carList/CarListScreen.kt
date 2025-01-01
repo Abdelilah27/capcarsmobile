@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -81,6 +82,13 @@ fun CarListScreen(
     var showRetryDialog by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
 
+    LaunchedEffect(carListState) {
+        if (carListState is CarListState.Error) {
+            errorMessage = carListState.message.getMessage(context)
+            showRetryDialog = true
+        }
+    }
+
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) { paddingValues ->
@@ -97,8 +105,6 @@ fun CarListScreen(
 
             when (carListState) {
                 is CarListState.Error -> {
-                    errorMessage = carListState.message.getMessage(context)
-                    showRetryDialog = true
                     Timber.tag("CarListScreen").d("Error: $errorMessage")
                 }
 
