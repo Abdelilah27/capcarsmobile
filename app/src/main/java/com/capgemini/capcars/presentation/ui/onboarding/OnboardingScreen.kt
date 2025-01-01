@@ -157,7 +157,6 @@ private fun OnboardingExploreNowSection(onNavigate: () -> Unit) {
 @Composable
 private fun ExploreNowRow(onNavigate: () -> Unit) {
     var moveIcon by remember { mutableStateOf(false) }
-    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
