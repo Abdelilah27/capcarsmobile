@@ -8,11 +8,11 @@ import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.capgemini.commons.ui.theme.OnSecondary
 import com.capgemini.commons.ui.theme.PrimaryButtonText
 import com.capgemini.commons.ui.theme.Secondary
 import com.capgemini.commons.ui.theme.largeShapeRadius
+import com.capgemini.commons.ui.theme.smallSpacing
 
 @Composable
 fun PrimaryButton(
@@ -32,7 +32,7 @@ fun PrimaryButton(
         Text(
             text = text.uppercase(),
             style = PrimaryButtonText,
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(smallSpacing)
         )
     }
 }

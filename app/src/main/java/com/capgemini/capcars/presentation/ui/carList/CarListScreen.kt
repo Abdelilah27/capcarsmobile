@@ -49,7 +49,10 @@ import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.extraLargeSpacing
 import com.capgemini.commons.ui.theme.iconSize
 import com.capgemini.commons.ui.theme.largeShapeRadius
+import com.capgemini.commons.ui.theme.largeSpacing
+import com.capgemini.commons.ui.theme.mediumSpacing
 import com.capgemini.commons.ui.theme.regularSpacing
+import com.capgemini.commons.ui.theme.smallSpacing
 import timber.log.Timber
 
 @Composable
@@ -62,7 +65,7 @@ fun CarListScreen(carListState: CarListState) {
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(24.dp)
+                .padding(largeSpacing)
                 .fillMaxSize()
         ) {
             ArrowIcon()
@@ -117,7 +120,7 @@ private fun CarListHeader() {
 @Composable
 private fun CarList(cars: List<CarItem>) {
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(mediumSpacing),
     ) {
         items(cars) { car ->
             CarCard(car = car)
@@ -140,20 +143,20 @@ private fun CarCard(car: CarItem) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Surface)
-                .padding(top = 8.dp, bottom = 8.dp)
+                .padding(top = smallSpacing, bottom = smallSpacing)
         ) {
             // Car Brand
             Text(
                 text = car.brand,
                 style = SubHeadlineExtraLarge,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
             )
 
             // Year and Model
             Text(
                 text = "${car.year} - ${car.model}",
                 style = SubHeadlineSmall,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+                modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
             )
 
             Spacer(modifier = Modifier.height(regularSpacing))
@@ -161,10 +164,10 @@ private fun CarCard(car: CarItem) {
             // Performance Section (MPG, HP, Perf)
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(smallSpacing),
                 modifier = Modifier
                     .fillMaxWidth(0.7f)
-                    .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                    .padding(top = mediumSpacing, start = mediumSpacing, end = mediumSpacing)
             ) {
                 PerformanceMetric(
                     iconRes = R.drawable.baseline_local_gas_station_24,
@@ -192,7 +195,7 @@ private fun CarCard(car: CarItem) {
                 onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
                 text = stringResource(id = R.string.see_this_vehicle),
                 modifier = Modifier
-                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
+                    .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)
                     .fillMaxWidth()
             )
         }
@@ -208,10 +211,10 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
         Icon(
             painter = painterResource(id = iconRes),
             contentDescription = null,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(largeSpacing)
         )
 
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(smallSpacing))
 
         Text(
             text = label,
