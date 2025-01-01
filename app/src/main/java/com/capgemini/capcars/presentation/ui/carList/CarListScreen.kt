@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -39,10 +37,10 @@ import coil.request.ImageRequest
 import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
+import com.capgemini.commons.ui.animation.AnimatedCardContent
 import com.capgemini.commons.ui.components.ErrorAlertDialog
 import com.capgemini.commons.ui.components.LoadingIndicator
 import com.capgemini.commons.ui.components.PrimaryButton
-import com.capgemini.commons.ui.theme.Background
 import com.capgemini.commons.ui.theme.BodyLight
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
 import com.capgemini.commons.ui.theme.LabelValue
@@ -52,7 +50,6 @@ import com.capgemini.commons.ui.theme.SubHeadlineSmall
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.extraLargeSpacing
 import com.capgemini.commons.ui.theme.iconSize
-import com.capgemini.commons.ui.theme.largeShapeRadius
 import com.capgemini.commons.ui.theme.largeSpacing
 import com.capgemini.commons.ui.theme.mediumSpacing
 import com.capgemini.commons.ui.theme.regularSpacing
@@ -150,76 +147,78 @@ private fun CarList(cars: List<CarItem>) {
 }
 
 @Composable
-private fun CarCard(car: CarItem) {
-    Card(
+fun CarCard(car: CarItem) {
+    AnimatedCardContent(
         modifier = Modifier
             .width(300.dp)
             .height(600.dp)
-            .background(Background),
-        shape = RoundedCornerShape(largeShapeRadius)
-    ) {
+    ) { modifier ->
         Column(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.Top,
-            modifier = Modifier
+            modifier = modifier
                 .fillMaxSize()
                 .background(Surface)
                 .padding(top = smallSpacing, bottom = smallSpacing)
         ) {
-            // Car Brand
-            Text(
-                text = car.brand,
-                style = SubHeadlineExtraLarge,
-                modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
-            )
-
-            // Year and Model
-            Text(
-                text = "${car.year} - ${car.model}",
-                style = SubHeadlineSmall,
-                modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
-            )
+            CarInfoSection(car)
 
             Spacer(modifier = Modifier.height(regularSpacing))
 
             // Performance Section (MPG, HP, Perf)
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(smallSpacing),
-                modifier = Modifier
-                    .fillMaxWidth(0.7f)
-                    .padding(top = mediumSpacing, start = mediumSpacing, end = mediumSpacing)
-            ) {
-                PerformanceMetric(
-                    iconRes = R.drawable.baseline_local_gas_station_24,
-                    label = stringResource(R.string.mpg_label),
-                    value = car.mpg
-                ) // MPG
-                PerformanceMetric(
-                    iconRes = R.drawable.baseline_auto_graph_24,
-                    label = stringResource(R.string.hp_label),
-                    value = car.hp.toString()
-                ) // HP
-                PerformanceMetric(
-                    iconRes = R.drawable.baseline_speed_24,
-                    label = stringResource(R.string.zero_to_sixty_label),
-                    value = car.processedPerf
-                ) // 0-60
-            }
+            PerformanceSection(car)
 
             // Car Image
             CarImage(imageUrl = car.image)
 
             Spacer(modifier = Modifier.weight(1f))
 
-            PrimaryButton(
-                onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
-                text = stringResource(id = R.string.see_this_vehicle),
-                modifier = Modifier
-                    .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)
-                    .fillMaxWidth()
-            )
+            CarActionButton()
         }
+    }
+}
+
+@Composable
+private fun CarInfoSection(car: CarItem) {
+    // Car Brand
+    Text(
+        text = car.brand,
+        style = SubHeadlineExtraLarge,
+        modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
+    )
+
+    // Year and Model
+    Text(
+        text = "${car.year} - ${car.model}",
+        style = SubHeadlineSmall,
+        modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
+    )
+}
+
+@Composable
+private fun PerformanceSection(car: CarItem) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(smallSpacing),
+        modifier = Modifier
+            .fillMaxWidth(0.7f)
+            .padding(top = mediumSpacing, start = mediumSpacing, end = mediumSpacing)
+    ) {
+        PerformanceMetric(
+            iconRes = R.drawable.baseline_local_gas_station_24,
+            label = stringResource(R.string.mpg_label),
+            value = car.mpg
+        ) // MPG
+        PerformanceMetric(
+            iconRes = R.drawable.baseline_auto_graph_24,
+            label = stringResource(R.string.hp_label),
+            value = car.hp.toString()
+        ) // HP
+        PerformanceMetric(
+            iconRes = R.drawable.baseline_speed_24,
+            label = stringResource(R.string.zero_to_sixty_label),
+            value = car.processedPerf
+        ) // 0-60
     }
 }
 
@@ -272,6 +271,17 @@ private fun CarImage(imageUrl: String) {
             contentScale = ContentScale.Crop
         )
     }
+}
+
+@Composable
+private fun CarActionButton() {
+    PrimaryButton(
+        onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
+        text = stringResource(id = R.string.see_this_vehicle),
+        modifier = Modifier
+            .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)
+            .fillMaxWidth()
+    )
 }
 
 @Preview(showBackground = true)
