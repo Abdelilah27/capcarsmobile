@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -22,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,7 +39,9 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
+import com.capgemini.capcars.presentation.ui.theme.LocalScreenWidthDp
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
+import com.capgemini.capcars.presentation.ui.utils.getFontSize
 import com.capgemini.commons.ui.animation.AnimatedCardContent
 import com.capgemini.commons.ui.components.ErrorAlertDialog
 import com.capgemini.commons.ui.components.LoadingIndicator
@@ -175,34 +177,37 @@ fun CarCard(car: CarItem) {
         // Dynamic width and height based on screen size
         val cardWidth = if (maxWidth < largeCardWidth) smallCardWidth else largeCardWidth
         val cardHeight = if (maxHeight < smallCardHeight) smallCardHeight else largeCardHeight
+        val screenWidthDp = LocalConfiguration.current.screenWidthDp
 
-        AnimatedCardContent(
-            modifier = Modifier
-                .width(cardWidth)
-                .height(cardHeight)
-        ) { modifier ->
-            Column(
-                horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.Top,
-                modifier = modifier
-                    .fillMaxSize()
-                    .background(Surface)
-                    .padding(top = smallSpacing, bottom = smallSpacing)
-            ) {
-                CarInfoSection(car)
+        CompositionLocalProvider(LocalScreenWidthDp provides screenWidthDp) {
+            AnimatedCardContent(
+                modifier = Modifier
+                    .width(cardWidth)
+                    .height(cardHeight)
+            ) { modifier ->
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    verticalArrangement = Arrangement.Top,
+                    modifier = modifier
+                        .fillMaxSize()
+                        .background(Surface)
+                        .padding(top = smallSpacing, bottom = smallSpacing)
+                ) {
+                    CarInfoSection(car)
 
-                Spacer(modifier = Modifier.height(if (LocalConfiguration.current.screenWidthDp < 420) tinySpacing else regularSpacing))
+                    Spacer(modifier = Modifier.height(if (screenWidthDp < 420) tinySpacing else regularSpacing))
 
-                // Performance Section (MPG, HP, Perf)
-                PerformanceSection(car)
+                    // Performance Section (MPG, HP, Perf)
+                    PerformanceSection(car)
 
-                // Car Image
-                CarImage(imageUrl = car.image)
+                    // Car Image
+                    CarImage(imageUrl = car.image)
 
-                Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.weight(1f))
 
-                // Adjusted button
-                CarActionButton()
+                    // Adjusted button
+                    CarActionButton()
+                }
             }
         }
     }
@@ -213,14 +218,26 @@ private fun CarInfoSection(car: CarItem) {
     // Car Brand
     Text(
         text = car.brand,
-        style = SubHeadlineExtraLarge.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) largeFontSize else extraLargeFontSize),
+        style = SubHeadlineExtraLarge.copy(
+            fontSize = getFontSize(
+                LocalScreenWidthDp.current,
+                largeFontSize,
+                extraLargeFontSize
+            )
+        ),
         modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
     )
 
     // Year and Model
     Text(
         text = "${car.year} - ${car.model}",
-        style = SubHeadlineSmall.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) tinyFontSize else smallFontSize),
+        style = SubHeadlineSmall.copy(
+            fontSize = getFontSize(
+                LocalScreenWidthDp.current,
+                tinyFontSize,
+                smallFontSize
+            )
+        ),
         modifier = Modifier.padding(start = mediumSpacing, end = mediumSpacing)
     )
 }
@@ -268,7 +285,13 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
 
         Text(
             text = label,
-            style = BodyLight.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) tinyFontSize else smallFontSize)
+            style = BodyLight.copy(
+                fontSize = getFontSize(
+                    LocalScreenWidthDp.current,
+                    tinyFontSize,
+                    smallFontSize
+                )
+            )
         )
 
         Spacer(modifier = Modifier.weight(0.3f))
@@ -276,7 +299,13 @@ fun PerformanceMetric(iconRes: Int, label: String, value: String) {
         // Centered value
         Text(
             text = value,
-            style = LabelValue.copy(fontSize = if (LocalConfiguration.current.screenWidthDp < 420) regularFontSize else mediumFontSize),
+            style = LabelValue.copy(
+                fontSize = getFontSize(
+                    LocalScreenWidthDp.current,
+                    regularFontSize,
+                    mediumFontSize
+                )
+            ),
             modifier = Modifier.align(Alignment.CenterVertically)
         )
     }
@@ -311,7 +340,6 @@ private fun CarActionButton() {
         modifier = Modifier
             .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)
             .fillMaxWidth()
-            .heightIn(min = 48.dp)
     )
 }
 
