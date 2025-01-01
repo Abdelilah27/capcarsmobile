@@ -2,6 +2,7 @@ package com.capgemini.capcars.data.repository
 
 import com.capgemini.capcars.data.datasource.CarRemoteDataSource
 import com.capgemini.capcars.data.network.CarItem
+import com.capgemini.capcars.data.network.NetworkError
 import javax.inject.Inject
 import com.capgemini.capcars.data.network.Result
 
@@ -14,6 +15,10 @@ class CarRepositoryImpl @Inject constructor(
 ) : CarRepository {
 
     override suspend fun getCars(): Result<List<CarItem>> {
-        return carRemoteDataSource.fetchCars()
+        return try {
+            carRemoteDataSource.fetchCars()
+        } catch (exception: Exception) {
+            Result.Failure(NetworkError.Unknown)
+        }
     }
 }
