@@ -6,7 +6,6 @@ import com.capgemini.capcars.domain.usecase.FetchCarState
 import com.capgemini.capcars.domain.usecase.FetchCarsUseCase
 import com.capgemini.capcars.utils.MainDispatcherRule
 import com.capgemini.capcars.utils.runTest
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import org.junit.Assert.assertEquals
@@ -33,13 +32,11 @@ class CarListViewModelTest {
     // Instance of CarListViewModel
     private lateinit var carListViewModel: CarListViewModel
 
-    // Setup method to initialize the ViewModel
     @Before
     fun setUp() {
         carListViewModel = CarListViewModel(fetchCarsUseCase)
     }
 
-    // Test to check if the state is updated to Loading when fetchCars is called
     @Test
     fun `when fetchCars is called, then state is updated to Loading`() = runTest {
         // Mocking the use case to emit Loading state
@@ -55,7 +52,6 @@ class CarListViewModelTest {
         assertEquals(CarListState.Loading, state)
     }
 
-    // Test to check if the state is updated to Success when fetchCars is called and returns success
     @Test
     fun `when fetchCars is called and returns Success, then state is updated to Success`() =
         runTest {
@@ -76,7 +72,6 @@ class CarListViewModelTest {
             assertTrue(state is CarListState.Success && state.cars == carItems)
         }
 
-    // Test to check if the state is updated to Error when fetchCars is called and returns an error
     @Test
     fun `when fetchCars is called and returns Error, then state is updated to Error`() = runTest {
         // Mock error
