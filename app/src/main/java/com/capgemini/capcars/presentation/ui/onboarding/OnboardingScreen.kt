@@ -18,14 +18,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.capgemini.capcars.R
+import com.capgemini.commons.ui.animation.SlideOutIcon
 import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart
@@ -150,22 +156,28 @@ private fun OnboardingExploreNowSection(onNavigate: () -> Unit) {
 
 @Composable
 private fun ExploreNowRow(onNavigate: () -> Unit) {
+    var moveIcon by remember { mutableStateOf(false) }
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable {
-            onNavigate()
-        }
+        modifier = Modifier
+            .clickable {
+                moveIcon = true
+            }
+            .fillMaxWidth()
     ) {
         Text(
             text = stringResource(R.string.subtitle_explore_car_models),
             style = BodySmall
         )
         Spacer(modifier = Modifier.width(smallSpacing))
-        Icon(
-            painter = painterResource(id = R.drawable.baseline_arrow_right_alt_24),
-            contentDescription = null,
-            tint = OnPrimary,
-            modifier = Modifier.size(iconSize)
+
+        // Icon that will animate
+        SlideOutIcon(
+            icon = painterResource(id = R.drawable.baseline_arrow_right_alt_24),
+            moveIcon = moveIcon,
+            onNavigate = onNavigate
         )
     }
 }
