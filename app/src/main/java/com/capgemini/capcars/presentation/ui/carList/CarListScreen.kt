@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults.buttonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -38,12 +36,11 @@ import coil.request.ImageRequest
 import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
+import com.capgemini.commons.ui.components.PrimaryButton
 import com.capgemini.commons.ui.theme.Background
 import com.capgemini.commons.ui.theme.BodyLight
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
 import com.capgemini.commons.ui.theme.LabelValue
-import com.capgemini.commons.ui.theme.OnSecondary
-import com.capgemini.commons.ui.theme.PrimaryButtonText
 import com.capgemini.commons.ui.theme.Secondary
 import com.capgemini.commons.ui.theme.SubHeadlineExtraLarge
 import com.capgemini.commons.ui.theme.SubHeadlineSmall
@@ -190,23 +187,13 @@ private fun CarCard(car: CarItem) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Button(
+            PrimaryButton(
                 onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
+                text = stringResource(id = R.string.see_this_vehicle),
                 modifier = Modifier
                     .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                    .fillMaxWidth(),
-                colors = buttonColors(
-                    containerColor = Secondary,
-                    contentColor = OnSecondary
-                ),
-                shape = RoundedCornerShape(largeShapeRadius)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.see_this_vehicle).uppercase(),
-                    style = PrimaryButtonText,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
+                    .fillMaxWidth()
+            )
         }
     }
 }
@@ -261,7 +248,6 @@ private fun CarImage(imageUrl: String) {
         )
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
