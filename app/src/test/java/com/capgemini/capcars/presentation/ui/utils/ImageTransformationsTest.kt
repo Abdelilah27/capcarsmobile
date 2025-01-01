@@ -1,9 +1,8 @@
-package com.capgemini.capcars.utils
+package com.capgemini.capcars.presentation.ui.utils
 
 import android.graphics.Bitmap
 import coil.size.Size
-import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
-import com.capgemini.capcars.presentation.ui.utils.cropLeftBitmap
+import com.capgemini.capcars.utils.runTest
 import io.mockk.coEvery
 import io.mockk.mockk
 import io.mockk.mockkStatic
