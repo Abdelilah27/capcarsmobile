@@ -1,7 +1,6 @@
 package com.capgemini.capcars.presentation.ui.carList
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -43,19 +42,18 @@ import com.capgemini.capcars.presentation.ui.theme.LocalScreenWidthDp
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
 import com.capgemini.capcars.presentation.ui.utils.getFontSize
 import com.capgemini.commons.ui.animation.AnimatedCardContent
+import com.capgemini.commons.ui.components.CustomBackHeader
 import com.capgemini.commons.ui.components.ErrorAlertDialog
 import com.capgemini.commons.ui.components.LoadingIndicator
 import com.capgemini.commons.ui.components.PrimaryButton
 import com.capgemini.commons.ui.theme.BodyLight
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
 import com.capgemini.commons.ui.theme.LabelValue
-import com.capgemini.commons.ui.theme.Secondary
 import com.capgemini.commons.ui.theme.SubHeadlineExtraLarge
 import com.capgemini.commons.ui.theme.SubHeadlineSmall
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.extraLargeFontSize
 import com.capgemini.commons.ui.theme.extraLargeSpacing
-import com.capgemini.commons.ui.theme.iconSize
 import com.capgemini.commons.ui.theme.largeCardHeight
 import com.capgemini.commons.ui.theme.largeCardWidth
 import com.capgemini.commons.ui.theme.largeFontSize
@@ -92,7 +90,7 @@ fun CarListScreen(
                 .padding(largeSpacing)
                 .fillMaxSize()
         ) {
-            ArrowIcon(onBackClicked)
+            CustomBackHeader(onBackClicked = onBackClicked)
             Spacer(modifier = Modifier.height(extraLargeSpacing))
             CarListHeader()
             Spacer(modifier = Modifier.weight(1.1f))
@@ -132,18 +130,6 @@ fun CarListScreen(
             }
         )
     }
-}
-
-@Composable
-private fun ArrowIcon(onBackClicked: () -> Unit) {
-    Icon(
-        painter = painterResource(id = R.drawable.baseline_keyboard_backspace_24),
-        contentDescription = "Back",
-        tint = Secondary,
-        modifier = Modifier
-            .size(iconSize)
-            .clickable { onBackClicked() }
-    )
 }
 
 @Composable
