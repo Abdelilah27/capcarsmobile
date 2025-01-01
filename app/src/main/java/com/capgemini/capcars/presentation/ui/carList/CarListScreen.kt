@@ -118,7 +118,6 @@ private fun CarListHeader() {
 private fun CarList(cars: List<CarItem>) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(horizontal = 16.dp)
     ) {
         items(cars) { car ->
             CarCard(car = car)
@@ -141,12 +140,13 @@ private fun CarCard(car: CarItem) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Surface)
+                .padding(top = 8.dp, bottom = 8.dp)
         ) {
             // Car Brand
             Text(
                 text = car.brand,
                 style = SubHeadlineExtraLarge,
-                modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp)
             )
 
             // Year and Model
@@ -192,7 +192,7 @@ private fun CarCard(car: CarItem) {
                 onClick = { /* Handle button click, e.g., navigate to vehicle details */ },
                 text = stringResource(id = R.string.see_this_vehicle),
                 modifier = Modifier
-                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                    .padding(start = 16.dp, end = 16.dp, bottom = 8.dp)
                     .fillMaxWidth()
             )
         }

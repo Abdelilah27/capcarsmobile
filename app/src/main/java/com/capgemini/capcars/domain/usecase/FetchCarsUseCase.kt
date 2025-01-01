@@ -29,7 +29,7 @@ class FetchCarsUseCase @Inject constructor(
                 emit(FetchCarState.Error(result.error))
             }
         }
-    }.flowOn(dispatcher).catch { exception ->
+    }.flowOn(dispatcher).catch {
         emit(FetchCarState.Error(NetworkError.Unknown))
     }
 }
