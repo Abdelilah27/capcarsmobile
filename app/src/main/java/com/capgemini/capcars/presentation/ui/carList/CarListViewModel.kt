@@ -8,6 +8,7 @@ import com.capgemini.capcars.data.network.NetworkError
 import com.capgemini.capcars.domain.usecase.FetchCarState
 import com.capgemini.capcars.domain.usecase.FetchCarsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -39,6 +40,7 @@ class CarListViewModel @Inject constructor(
                     }
 
                     is FetchCarState.Success -> {
+                        delay(5000)
                         // Process the cars to extract and set the performance value
                         val processedCars = state.cars.map { car ->
                             car.copy(processedPerf = extractPerformanceValue(car.perf))

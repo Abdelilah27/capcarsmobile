@@ -25,4 +25,8 @@
 
     <!-- Button Texts -->
     <string name="see_this_vehicle">See Available Vehicle</string>
+
+    <!-- Loading Message -->
+    <string name="loading_message">See Available Vehicle</string>
+
 </resources>

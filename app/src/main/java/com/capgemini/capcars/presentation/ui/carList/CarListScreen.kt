@@ -36,6 +36,7 @@ import coil.request.ImageRequest
 import com.capgemini.capcars.R
 import com.capgemini.capcars.data.network.CarItem
 import com.capgemini.capcars.presentation.ui.utils.CropTopTransformation
+import com.capgemini.commons.ui.components.LoadingIndicator
 import com.capgemini.commons.ui.components.PrimaryButton
 import com.capgemini.commons.ui.theme.Background
 import com.capgemini.commons.ui.theme.BodyLight
@@ -76,7 +77,7 @@ fun CarListScreen(carListState: CarListState) {
                 }
 
                 CarListState.Loading -> {
-                    Timber.tag("CarListScreen").d("Loading ...")
+                    LoadingIndicator(message = stringResource(R.string.loading_message))
                 }
 
                 CarListState.NoState -> {

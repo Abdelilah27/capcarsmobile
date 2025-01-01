@@ -19,6 +19,8 @@ val largeSpacing = 24.dp
 val extraLargeSpacing = 36.dp
 val hugeSpacing = 50.dp
 
-// Divider
+// Size
 val iconSize: Dp = 24.dp
 val dividerThickness: Dp = 0.3.dp
+val progressIndicatorSize: Dp = 64.dp
+val loadingStrokeWidth: Dp = 4.dp
