@@ -37,7 +37,7 @@ val tinyFontSize = 12.sp
 // Dynamic Width/Height Variables
 val smallCardWidth = 250.dp
 val largeCardWidth = 350.dp
-val smallCardHeight = 500.dp
+val smallCardHeight = 300.dp
 val largeCardHeight = 600.dp
 
 // Elevation

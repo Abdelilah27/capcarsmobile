@@ -63,6 +63,10 @@ class CarListViewModel @Inject constructor(
         val regex = "\\d+\\.\\d+".toRegex() // Matches decimal numbers like 4.0
         return regex.find(perf)?.value ?: "N/A" // Return the matched value or a default
     }
+
+    fun refreshCars() {
+        fetchCars()
+    }
 }
 
 // Represents the various UI states for the CarList

@@ -50,7 +50,8 @@ fun AppNavHost(
             CarListScreen(
                 carListState = carListState,
                 onBackClicked = { navController.popBackStack() },
-                onRetryClicked = { viewModel.retryFetchCars() }
+                onRetryClicked = { viewModel.retryFetchCars() },
+                onRefresh = { viewModel.refreshCars() }
             )
         }
     }

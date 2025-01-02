@@ -106,4 +106,8 @@ dependencies {
     // Worker Manager
     implementation (libs.androidx.work.runtime.ktx)
 
+    dependencies {
+        implementation ("com.google.accompanist:accompanist-swiperefresh:0.25.0")
+    }
+
 }

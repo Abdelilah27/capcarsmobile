@@ -3,7 +3,6 @@ package com.capgemini.capcars.presentation.ui.carList
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,6 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -55,32 +56,31 @@ import com.capgemini.commons.ui.theme.SubHeadlineSmall
 import com.capgemini.commons.ui.theme.Surface
 import com.capgemini.commons.ui.theme.extraLargeFontSize
 import com.capgemini.commons.ui.theme.extraLargeSpacing
-import com.capgemini.commons.ui.theme.largeCardHeight
-import com.capgemini.commons.ui.theme.largeCardWidth
 import com.capgemini.commons.ui.theme.largeFontSize
 import com.capgemini.commons.ui.theme.largeSpacing
 import com.capgemini.commons.ui.theme.mediumFontSize
 import com.capgemini.commons.ui.theme.mediumSpacing
 import com.capgemini.commons.ui.theme.regularFontSize
 import com.capgemini.commons.ui.theme.regularSpacing
-import com.capgemini.commons.ui.theme.smallCardHeight
-import com.capgemini.commons.ui.theme.smallCardWidth
 import com.capgemini.commons.ui.theme.smallFontSize
 import com.capgemini.commons.ui.theme.smallSpacing
 import com.capgemini.commons.ui.theme.tinyFontSize
 import com.capgemini.commons.ui.theme.tinySpacing
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import timber.log.Timber
 
 @Composable
 fun CarListScreen(
-    carListState: CarListState, // Represents the current state of the car list
+    carListState: CarListState,
     onBackClicked: () -> Unit,
-    onRetryClicked: () -> Unit
+    onRetryClicked: () -> Unit,
+    onRefresh: () -> Unit
 ) {
     val context = LocalContext.current
-
-    var showRetryDialog by remember { mutableStateOf(false) } // Tracks if the retry dialog should be displayed
+    var showRetryDialog by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf("") }
+    var isRefreshing by remember { mutableStateOf(false) } // Tracks refresh state
 
     LaunchedEffect(carListState) {
         if (carListState is CarListState.Error) {
@@ -103,27 +103,37 @@ fun CarListScreen(
             CarListHeader()
             Spacer(modifier = Modifier.weight(1.1f))
 
-            when (carListState) {
-                is CarListState.Error -> {
-                    Timber.tag("CarListScreen").d("Error: $errorMessage")
+            // Wrap LazyRow with SwipeRefresh
+            SwipeRefresh(
+                state = rememberSwipeRefreshState(isRefreshing),
+                onRefresh = {
+                    isRefreshing = true
+                    onRefresh() // Trigger refresh action in the ViewModel
                 }
+            ) {
+                when (carListState) {
+                    is CarListState.Error -> {
+                        Timber.tag("CarListScreen").d("Error: $errorMessage")
+                    }
 
-                CarListState.Loading -> {
-                    LoadingIndicator(message = stringResource(R.string.loading_message))
-                }
+                    CarListState.Loading -> {
+                        LoadingIndicator(message = stringResource(R.string.loading_message))
+                    }
 
-                CarListState.NoState -> {
-                    Timber.tag("CarListScreen").d("NoState")
-                }
+                    CarListState.NoState -> {
+                        Timber.tag("CarListScreen").d("NoState")
+                    }
 
-                is CarListState.Success -> {
-                    CarList(cars = carListState.cars)
+                    is CarListState.Success -> {
+                        CarList(cars = carListState.cars)
+                        isRefreshing = false // Set refreshing to false once data is loaded
+                    }
                 }
             }
         }
     }
 
-    // Displays a retry dialog in case of an error
+    // Retry dialog
     if (showRetryDialog) {
         ErrorAlertDialog(
             errorMessage = errorMessage,
@@ -151,56 +161,58 @@ private fun CarListHeader() {
 
 @Composable
 private fun CarList(cars: List<CarItem>) {
-    LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(mediumSpacing),
-    ) {
-        items(cars) { car ->
-            CarCard(car = car)
+    Box {
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(mediumSpacing),
+            modifier = Modifier
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState())
+                .align(Alignment.BottomCenter) // Align at the bottom of the Box
+        ) {
+            items(cars) { car ->
+                CarCard(car = car)
+            }
         }
     }
 }
 
 @Composable
 fun CarCard(car: CarItem) {
-    BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(smallSpacing)
-    ) {
-        // Dynamic width and height based on screen size
-        val screenWidthDp = LocalConfiguration.current.screenWidthDp
-        val cardWidth = screenWidthDp * 0.7f
-        val cardHeight = if (maxHeight < smallCardHeight) smallCardHeight else largeCardHeight
+    // Dynamic width and height based on screen size
+    val screenWidthDp = LocalConfiguration.current.screenWidthDp
+    val screenHeightDp = LocalConfiguration.current.screenHeightDp
+    val cardWidth = screenWidthDp * 0.7f
+    val cardHeight = screenHeightDp.dp * 0.64f
 
-        CompositionLocalProvider(LocalScreenWidthDp provides screenWidthDp) {
-            AnimatedCardContent(
-                modifier = Modifier
-                    .width(cardWidth.dp)
-                    .height(cardHeight)
-            ) { modifier ->
-                Column(
-                    horizontalAlignment = Alignment.Start,
-                    verticalArrangement = Arrangement.Top,
-                    modifier = modifier
-                        .fillMaxSize()
-                        .background(Surface)
-                        .padding(top = smallSpacing, bottom = smallSpacing)
-                ) {
-                    CarInfoSection(car)
+    CompositionLocalProvider(LocalScreenWidthDp provides screenWidthDp) {
+        AnimatedCardContent(
+            modifier = Modifier
+                .padding(smallSpacing)
+                .width(cardWidth.dp)
+                .height(cardHeight)
+        ) { modifier ->
+            Column(
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top,
+                modifier = modifier
+                    .fillMaxSize()
+                    .background(Surface)
+                    .padding(top = smallSpacing, bottom = smallSpacing)
+            ) {
+                CarInfoSection(car)
 
-                    Spacer(modifier = Modifier.height(if (screenWidthDp < 420) tinySpacing else regularSpacing))
+                Spacer(modifier = Modifier.height(if (screenWidthDp < 420) tinySpacing else regularSpacing))
 
-                    // Performance Section (MPG, HP, Perf)
-                    PerformanceSection(car)
+                // Performance Section (MPG, HP, Perf)
+                PerformanceSection(car)
 
-                    // Car Image
-                    CarImage(imageUrl = car.image)
+                // Car Image
+                CarImage(imageUrl = car.image)
 
-                    Spacer(modifier = Modifier.weight(1f))
+                Spacer(modifier = Modifier.weight(1f))
 
-                    // Adjusted button
-                    CarActionButton()
-                }
+                // Adjusted button
+                CarActionButton()
             }
         }
     }
@@ -332,7 +344,12 @@ private fun CarActionButton() {
         onClick = { /* Handle button click, e.g., navigate to car details */ },
         text = stringResource(id = R.string.see_this_vehicle),
         modifier = Modifier
-            .padding(start = mediumSpacing, end = mediumSpacing, bottom = smallSpacing)
+            .padding(
+                top = mediumSpacing,
+                start = mediumSpacing,
+                end = mediumSpacing,
+                bottom = smallSpacing
+            )
             .fillMaxWidth()
     )
 }
@@ -340,6 +357,6 @@ private fun CarActionButton() {
 @Preview(showBackground = true)
 @Composable
 private fun CarListScreenPreview() {
-    CarListScreen(CarListState.NoState, {}, {})
-    CarListScreen(CarListState.Loading, {}, {})
+    CarListScreen(CarListState.NoState, {}, {}, {})
+    CarListScreen(CarListState.Loading, {}, {}, {})
 }
