@@ -32,7 +32,7 @@ class CarListViewModel @Inject constructor(
         fetchCars()
     }
 
-    @VisibleForTesting // TODO SCAT
+    @VisibleForTesting
     fun fetchCars() {
         viewModelScope.launch {
             _state.value = CarListState.Loading

@@ -68,7 +68,7 @@ class FetchCarsUseCaseTest {
 
     @Test
     fun `should emit success and return list of cars when cars are fetched successfully`() =
-        runTest { // TODO SCAT
+        runTest {
             // Mocking the repository to return a successful result with the valid cars list
             coEvery { repository.getCars() } returns Result.Success(validCars)
 

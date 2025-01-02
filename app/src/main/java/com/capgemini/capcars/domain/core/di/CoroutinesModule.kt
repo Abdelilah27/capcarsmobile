@@ -14,7 +14,7 @@ import javax.inject.Qualifier
 
 @InstallIn(SingletonComponent::class)
 @Module
-class CoroutinesModule { // TODO SCAT
+class CoroutinesModule {
 
     @MainDispatcher
     @Provides

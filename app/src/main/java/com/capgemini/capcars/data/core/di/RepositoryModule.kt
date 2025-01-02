@@ -18,7 +18,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
 
     // Binds CarRepository to its implementation CarRepositoryImpl
-    @Binds // TODO SCAT
+    @Binds
     @Singleton
     abstract fun bindCarRepository(
         carRepositoryImpl: CarRepositoryImpl

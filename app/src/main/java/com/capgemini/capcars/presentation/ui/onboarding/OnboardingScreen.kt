@@ -67,7 +67,7 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.Start,
             modifier = Modifier
-                .padding(paddingValues) // TODO SCAT
+                .padding(paddingValues)
                 .padding(largeSpacing)
                 .fillMaxSize()
         ) {
