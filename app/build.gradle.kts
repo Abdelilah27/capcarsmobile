@@ -103,6 +103,7 @@ dependencies {
     // Leakcanary for detecting memory leaks
     debugImplementation (libs.leakcanary.android)
 
-    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+    // Worker Manager
+    implementation (libs.androidx.work.runtime.ktx)
 
 }
