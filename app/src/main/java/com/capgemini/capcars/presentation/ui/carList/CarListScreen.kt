@@ -168,14 +168,14 @@ fun CarCard(car: CarItem) {
             .padding(smallSpacing)
     ) {
         // Dynamic width and height based on screen size
-        val cardWidth = if (maxWidth < largeCardWidth) smallCardWidth else largeCardWidth
-        val cardHeight = if (maxHeight < smallCardHeight) smallCardHeight else largeCardHeight
         val screenWidthDp = LocalConfiguration.current.screenWidthDp
+        val cardWidth = screenWidthDp * 0.7f
+        val cardHeight = if (maxHeight < smallCardHeight) smallCardHeight else largeCardHeight
 
         CompositionLocalProvider(LocalScreenWidthDp provides screenWidthDp) {
             AnimatedCardContent(
                 modifier = Modifier
-                    .width(cardWidth)
+                    .width(cardWidth.dp)
                     .height(cardHeight)
             ) { modifier ->
                 Column(
