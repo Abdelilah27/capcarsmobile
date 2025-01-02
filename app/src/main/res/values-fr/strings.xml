@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name" translatable="false">Capcars</string>
+
+    <string name="title_check_vehicle_availability">Vérifier la disponibilité des véhicules</string>
+    <string name="title_see_available_vehicle">Voir les véhicules disponibles</string>
+    <string name="title_ready_to_explore">Prêt à explorer nos voitures ?</string>
+
+    <!-- Subtitles -->
+    <string name="subtitle_browse_car_collection">Parcourez notre collection de voitures et trouvez votre prochain véhicule</string>
+    <string name="subtitle_explore_car_models">Explorez maintenant</string>
+
+    <!-- Body Texts -->
+    <string name="body_car_availability_info">Vous voulez vous assurer que ce véhicule est disponible dans votre zone de livraison.</string>
+
+    <!-- Network Errors -->
+    <string name="no_internet_connection">Pas de connexion internet.</string>
+    <string name="api_error">Erreur de l\'API : %1$d - %2$s</string>
+    <string name="timeout">Délai d\'attente du réseau dépassé. Veuillez réessayer.</string>
+    <string name="unknown_error">Une erreur inconnue est survenue. Veuillez réessayer.</string>
+
+    <!-- Performance Metric -->
+    <string name="mpg_label">MPG</string>
+    <string name="hp_label">CV</string>
+    <string name="zero_to_sixty_label">0–60</string>
+
+    <!-- Button Texts -->
+    <string name="see_this_vehicle">Voir le véhicule disponible</string>
+
+    <!-- Loading Message -->
+    <string name="loading_message">Chargement des véhicules</string>
+
+    <!-- Snackbar Connection Lost Message -->
+    <string name="lost_connection_message">Vous avez perdu la connexion</string>
+</resources>

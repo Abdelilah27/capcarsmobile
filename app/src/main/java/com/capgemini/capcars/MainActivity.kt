@@ -15,6 +15,7 @@ import com.capgemini.capcars.presentation.ui.navigation.AppNavHost
 import com.capgemini.capcars.presentation.ui.theme.CapcarsTheme
 import com.capgemini.commons.ui.components.NetworkStatusSnackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -22,6 +23,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set the default locale to French
+        setLocaleToFrench()
+
         enableEdgeToEdge()
         setContent {
             CapcarsTheme {
@@ -37,6 +42,18 @@ class MainActivity : ComponentActivity() {
                 NetworkStatusSnackbar(isConnected, stringResource(R.string.lost_connection_message))
             }
         }
+    }
+
+    private fun setLocaleToFrench() {
+        val locale = Locale("fr")
+        Locale.setDefault(locale)
+
+        // Create a new configuration with the desired locale
+        val config = resources.configuration
+        config.setLocale(locale)
+
+        // Update the resources with the new configuration
+        resources.updateConfiguration(config, resources.displayMetrics)
     }
 
     override fun onDestroy() {

@@ -2,6 +2,6 @@
 <resources>
     <!-- Error Alert Dialog Texts -->
     <string name="error_title">Erreur</string>
-    <string name="retry_button_text">Réessayer</string>
-    <string name="dismiss_button_text">Fermer</string>
+    <string name="retry_button_text">Retry</string>
+    <string name="dismiss_button_text">Dismiss</string>
 </resources>
