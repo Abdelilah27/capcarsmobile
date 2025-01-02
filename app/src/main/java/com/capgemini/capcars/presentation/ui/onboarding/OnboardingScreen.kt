@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +36,7 @@ import com.capgemini.commons.ui.theme.BodySmall
 import com.capgemini.commons.ui.theme.GradientEnd
 import com.capgemini.commons.ui.theme.GradientStart
 import com.capgemini.commons.ui.theme.HeadlineExtraLarge
+import com.capgemini.commons.ui.theme.HeadlineLarge
 import com.capgemini.commons.ui.theme.OnPrimary
 import com.capgemini.commons.ui.theme.SubHeadlineMedium
 import com.capgemini.commons.ui.theme.Surface
@@ -51,6 +53,11 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
     val gradient = Brush.verticalGradient(
         colors = listOf(GradientStart, GradientEnd)
     )
+
+    // Get the screen width to adapt to small devices
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val isSmallScreen = screenWidth < 450.dp
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
@@ -65,7 +72,7 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
                 .fillMaxSize()
         ) {
             Spacer(modifier = Modifier.height(hugeSpacing))
-            OnboardingContent()
+            OnboardingContent(isSmallScreen)
             Spacer(modifier = Modifier.weight(1f))
             OnboardingFooter(onNavigate)
         }
@@ -73,20 +80,20 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
 }
 
 @Composable
-private fun OnboardingContent() {
+private fun OnboardingContent(isSmallScreen: Boolean) {
     // Title Section
     Column(horizontalAlignment = Alignment.Start) {
-        OnboardingTitle()
+        OnboardingTitle(isSmallScreen)
         OnboardingSubtitle()
         OnboardingBodyText()
     }
 }
 
 @Composable
-private fun OnboardingTitle() {
+private fun OnboardingTitle(isSmallScreen: Boolean) {
     Text(
         text = stringResource(R.string.title_check_vehicle_availability),
-        style = HeadlineExtraLarge
+        style = if (isSmallScreen) HeadlineLarge else HeadlineExtraLarge
     )
 }
 

@@ -34,6 +34,14 @@ val HeadlineExtraLarge = TextStyle(
     color = OnPrimary
 )
 
+val HeadlineLarge = TextStyle(
+    fontSize = 32.sp,
+    lineHeight = 40.sp,
+    fontFamily = FontFamily(Font(R.font.poppins_bold)),
+    fontWeight = FontWeight.Bold,
+    color = OnPrimary
+)
+
 val SubHeadlineExtraLarge = TextStyle(
     fontSize = 40.sp,
     lineHeight = 48.sp,
