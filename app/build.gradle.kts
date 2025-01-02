@@ -103,11 +103,9 @@ dependencies {
     // Leakcanary for detecting memory leaks
     debugImplementation (libs.leakcanary.android)
 
-    // Worker Manager
+    // Work manager
     implementation (libs.androidx.work.runtime.ktx)
 
-    dependencies {
-        implementation ("com.google.accompanist:accompanist-swiperefresh:0.25.0")
-    }
-
+    // Swipe refresh
+    implementation (libs.accompanist.swiperefresh)
 }
