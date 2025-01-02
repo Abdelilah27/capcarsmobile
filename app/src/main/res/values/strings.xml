@@ -29,4 +29,7 @@
     <!-- Loading Message -->
     <string name="loading_message">Loading Vehicles</string>
 
+    <!-- Snackbar Connection Lost Message -->
+    <string name="lost_connection_message">You have lost connection</string>
+
 </resources>
