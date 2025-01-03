@@ -82,13 +82,6 @@ fun CarListScreen(
     var errorMessage by remember { mutableStateOf("") }
     var isRefreshing by remember { mutableStateOf(false) } // Tracks refresh state
 
-    LaunchedEffect(carListState) {
-        if (carListState is CarListState.Error) {
-            errorMessage = carListState.message.getMessage(context)
-            showRetryDialog = true
-        }
-    }
-
     Scaffold(
         modifier = Modifier.fillMaxSize()
     ) { paddingValues ->
@@ -113,7 +106,10 @@ fun CarListScreen(
             ) {
                 when (carListState) {
                     is CarListState.Error -> {
-                        Timber.tag("CarListScreen").d("Error: $errorMessage")
+                        LaunchedEffect(carListState) {
+                            errorMessage = carListState.message.getMessage(context)
+                            showRetryDialog = true
+                        }
                     }
 
                     CarListState.Loading -> {
