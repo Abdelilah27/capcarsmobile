@@ -107,7 +107,8 @@ fun CarListScreen(
                 when (carListState) {
                     is CarListState.Error -> {
                         LaunchedEffect(carListState) {
-                            errorMessage = carListState.message.getMessage(context)
+                            val errorResId = carListState.message.getMessageResource()
+                            errorMessage = context.getString(errorResId)
                             showRetryDialog = true
                         }
                     }

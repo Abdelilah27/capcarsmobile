@@ -14,7 +14,7 @@
 
     <!-- Network Errors -->
     <string name="no_internet_connection">Pas de connexion internet.</string>
-    <string name="api_error">Erreur de l\'API : %1$d - %2$s</string>
+    <string name="api_error">Erreur de serveur. Veuillez réessayer.</string>
     <string name="timeout">Délai d\'attente du réseau dépassé. Veuillez réessayer.</string>
     <string name="unknown_error">Une erreur inconnue est survenue. Veuillez réessayer.</string>
 
